@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-warm-white text-brand-charcoal antialiased selection:bg-brand-teal/20;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', ui-serif, Georgia, Cambria, serif;
+  }
+}
+
+/* Custom Utilities and Ambient Effects */
+@layer utilities {
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(46, 139, 139, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(46, 139, 139, 0.03) 1px, transparent 1px);
+  }
+}
+
+/* Hide Scrollbar for Horizontal Scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Active Link Styles */
+.nav-link-active {
+  @apply text-brand-teal font-semibold border-b-2 border-brand-teal;
+}
+
+/* Custom Scroll Margins for Anchor Links */
+.scroll-mt-header {
+  scroll-margin-top: 5rem;
+}
