@@ -110,7 +110,7 @@ export default function Home() {
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight font-serif text-white">
-              Occupational Health Medicals & Holistic Wellness in Bellville, Cape Town
+              Transforming Lives Through Pratical, Hostilic Wellness
             </h1>
             
             <p className="text-base sm:text-lg text-brand-warm-white/90 leading-relaxed max-w-2xl">

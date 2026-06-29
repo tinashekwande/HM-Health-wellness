@@ -24,7 +24,7 @@ export default function Footer() {
           <div className="lg:col-span-5 flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <img
-                src="/no-background-logo.png"
+                src="/3D logo.png"
                 alt="HM Occhealth & Holistic Wellness Logo"
                 className="w-24 h-24 sm:w-36 sm:h-36 object-contain"
               />
