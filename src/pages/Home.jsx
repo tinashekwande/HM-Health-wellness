@@ -105,8 +105,8 @@ export default function Home() {
         {/* Hero Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-white">
           <div className="max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium tracking-wide text-brand-warm-white backdrop-blur-sm">
-              ✨ Transforming Lives Through Practical, Holistic Wellness
+            <div className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium tracking-wide text-brand-warm-white backdrop-blur-sm">
+              ✨ A new way of Living.
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight font-serif text-white">
