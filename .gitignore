@@ -29,3 +29,6 @@ openh264-1.8.0-win64.dll
 # Original video backups
 public/background-video-original.mp4
 
+# Original image backups
+public/hazel-original.png
+
