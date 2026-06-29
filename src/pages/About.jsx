@@ -32,7 +32,7 @@ export default function About() {
           <div className="relative">
             <div className="absolute inset-0 rounded-3xl border border-brand-teal/20 scale-105 pointer-events-none"></div>
             <img
-              src="/hazel.jpg"
+              src="/hazel.png"
               alt="Sr. Hazel Kivedo circular portrait"
               className="w-72 h-72 sm:w-96 sm:h-96 object-cover rounded-3xl border-4 border-brand-teal/15 shadow-xl relative z-10"
             />

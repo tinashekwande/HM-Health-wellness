@@ -130,7 +130,7 @@ export default function Home() {
               </div>
               
               <img
-                src="/hazel.jpg"
+                src="/hazel.png"
                 alt="Sr. Hazel Kivedo portrait"
                 className="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-full border-4 border-brand-teal/15 shadow-xl relative z-0"
               />
