@@ -243,53 +243,55 @@ Please let me know how to proceed with payment and access/delivery details.`;
             <div
               key={product.id}
               onClick={() => setSelectedProduct(product)}
-              className="group relative bg-white/90 border border-white/45 rounded-3xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between cursor-pointer backdrop-blur-md"
+              className="group relative bg-white/90 border border-white/45 rounded-3xl overflow-hidden shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between cursor-pointer backdrop-blur-md"
             >
-              {/* Product Badge */}
-              {product.badge && (
-                <span className="absolute top-4 right-4 bg-brand-pink/20 text-brand-charcoal text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                  {product.badge}
-                </span>
-              )}
-
-              <div className="space-y-4">
-                {/* Product Header info */}
-                <div className="flex items-center gap-3">
-                  <span className="text-4xl p-2.5 bg-brand-teal/5 rounded-2xl group-hover:bg-brand-teal/10 transition-colors">
-                    {product.icon}
+              {/* Product Cover Image */}
+              <div className="relative h-48 w-full overflow-hidden bg-brand-teal/5">
+                <img
+                  src={product.image || 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80'}
+                  alt={product.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {product.badge && (
+                  <span className="absolute top-4 right-4 bg-brand-pink text-brand-charcoal text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                    {product.badge}
                   </span>
-                  <div>
-                    <span className="block text-[9px] uppercase font-bold tracking-wider text-brand-sage">
-                      {product.category}
-                    </span>
-                    <h3 className="font-serif font-bold text-lg text-brand-charcoal group-hover:text-brand-teal transition-colors leading-tight">
+                )}
+                <span className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-brand-teal-deep text-[9px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider shadow-sm">
+                  {product.category}
+                </span>
+              </div>
+
+              <div className="p-6 flex-grow flex flex-col justify-between space-y-4">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">{product.icon}</span>
+                    <h3 className="font-serif font-bold text-base sm:text-lg text-brand-charcoal group-hover:text-brand-teal transition-colors leading-tight line-clamp-1">
                       {product.name}
                     </h3>
                   </div>
+                  <p className="text-xs text-brand-charcoal/75 leading-relaxed line-clamp-2">
+                    {product.shortDesc}
+                  </p>
                 </div>
 
-                {/* Short Description */}
-                <p className="text-xs text-brand-charcoal/75 leading-relaxed line-clamp-3">
-                  {product.shortDesc}
-                </p>
-              </div>
-
-              {/* Price & Actions */}
-              <div className="pt-6 border-t border-brand-teal/5 flex items-center justify-between mt-6">
-                <span className="text-xl font-bold text-brand-teal-deep">
-                  R{product.price}
-                </span>
-                
-                <div className="flex gap-2">
-                  <button
-                    onClick={(e) => addToCart(product, e)}
-                    className="inline-flex items-center justify-center rounded-xl bg-brand-teal text-white hover:bg-brand-teal-deep px-4 py-2 text-xs font-bold transition-all shadow-sm"
-                  >
-                    Add +
-                  </button>
-                  <button className="inline-flex items-center justify-center rounded-xl bg-brand-teal/10 text-brand-teal hover:bg-brand-teal/20 px-3.5 py-2 text-xs font-bold transition-all">
-                    View
-                  </button>
+                {/* Price & Actions */}
+                <div className="pt-4 border-t border-brand-teal/5 flex items-center justify-between mt-auto">
+                  <span className="text-xl font-bold text-brand-teal-deep">
+                    R{product.price}
+                  </span>
+                  
+                  <div className="flex gap-2">
+                    <button
+                      onClick={(e) => addToCart(product, e)}
+                      className="inline-flex items-center justify-center rounded-xl bg-brand-teal text-white hover:bg-brand-teal-deep px-4 py-2 text-xs font-bold transition-all shadow-sm"
+                    >
+                      Add +
+                    </button>
+                    <button className="inline-flex items-center justify-center rounded-xl bg-brand-teal/10 text-brand-teal hover:bg-brand-teal/20 px-3.5 py-2 text-xs font-bold transition-all">
+                      View
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -310,9 +312,10 @@ Please let me know how to proceed with payment and access/delivery details.`;
             className="bg-white/95 backdrop-blur-md max-w-2xl w-full rounded-3xl p-6 sm:p-8 border border-white/40 shadow-2xl relative max-h-[90vh] overflow-y-auto space-y-6 animate-fade-in-up"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Close Button */}
             <button
               onClick={() => setSelectedProduct(null)}
-              className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full text-brand-charcoal/50 hover:text-brand-charcoal hover:bg-brand-charcoal/5 transition-all outline-none"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 p-2 rounded-full text-brand-charcoal/50 hover:text-brand-charcoal hover:bg-brand-charcoal/5 transition-all outline-none bg-white/80 backdrop-blur-sm"
               aria-label="Close details"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -320,7 +323,16 @@ Please let me know how to proceed with payment and access/delivery details.`;
               </svg>
             </button>
 
-            <div className="space-y-3 pr-8">
+            {/* Cover Image in Modal */}
+            <div className="h-64 w-full overflow-hidden bg-brand-teal/5 rounded-2xl">
+              <img
+                src={selectedProduct.image || 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80'}
+                alt={selectedProduct.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-teal/10 text-brand-teal text-[9px] font-bold uppercase tracking-wider">
                 <span>{selectedProduct.icon}</span>
                 <span>{selectedProduct.category}</span>

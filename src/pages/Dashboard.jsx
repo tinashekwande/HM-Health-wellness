@@ -105,6 +105,7 @@ export default function Dashboard() {
     category: 'Digital Guides',
     price: '',
     icon: '🌱',
+    image: '',
     shortDesc: '',
     longDesc: '',
     featuresText: '',
@@ -129,6 +130,7 @@ export default function Dashboard() {
       category: productForm.category,
       price: Number(productForm.price) || 0,
       icon: productForm.icon || '🌱',
+      image: productForm.image || '',
       shortDesc: productForm.shortDesc,
       longDesc: productForm.longDesc,
       features: featuresArray,
@@ -152,6 +154,7 @@ export default function Dashboard() {
       category: product.category,
       price: product.price.toString(),
       icon: product.icon,
+      image: product.image || '',
       shortDesc: product.shortDesc,
       longDesc: product.longDesc,
       featuresText: product.features ? product.features.join('\n') : '',
@@ -175,6 +178,7 @@ export default function Dashboard() {
       category: 'Digital Guides',
       price: '',
       icon: '🌱',
+      image: '',
       shortDesc: '',
       longDesc: '',
       featuresText: '',
@@ -332,6 +336,37 @@ export default function Dashboard() {
                 <div className="bg-white/80 border border-white/50 p-5 rounded-2xl shadow-sm backdrop-blur-md">
                   <span className="text-xs uppercase font-bold tracking-wider text-brand-sage">Est. Revenue</span>
                   <div className="text-3xl font-bold text-brand-teal-deep mt-1">R{totalRevenueMock}</div>
+                </div>
+              </div>
+
+              {/* Quick Actions Panel */}
+              <div className="bg-white/80 border border-white/50 p-6 rounded-2xl shadow-sm backdrop-blur-md space-y-4">
+                <h3 className="font-serif font-bold text-lg text-brand-charcoal border-b border-brand-teal/5 pb-2">
+                  Quick Actions
+                </h3>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <button
+                    onClick={() => {
+                      resetProductForm();
+                      setIsProductModalOpen(true);
+                    }}
+                    className="p-6 bg-brand-teal text-white hover:bg-brand-teal-deep rounded-2xl shadow-sm hover:scale-[1.01] transition-all flex flex-col items-center justify-center text-center space-y-2 group"
+                  >
+                    <span className="text-3xl group-hover:scale-110 transition-transform">🛍️</span>
+                    <span className="font-bold text-sm">Add New Product</span>
+                    <span className="text-[10px] text-white/85">Instantly list wellness e-books, journals, or OHS compliance guides.</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      resetBookingForm();
+                      setIsBookingModalOpen(true);
+                    }}
+                    className="p-6 bg-brand-charcoal text-white hover:bg-brand-charcoal/90 rounded-2xl shadow-sm hover:scale-[1.01] transition-all flex flex-col items-center justify-center text-center space-y-2 group"
+                  >
+                    <span className="text-3xl group-hover:scale-110 transition-transform">📅</span>
+                    <span className="font-bold text-sm">Register Manual Booking</span>
+                    <span className="text-[10px] text-white/85">Manually log patient consultations or B2B compliance assessments.</span>
+                  </button>
                 </div>
               </div>
 
@@ -750,6 +785,17 @@ export default function Dashboard() {
               </div>
 
               <div>
+                <label className="block font-bold text-brand-charcoal uppercase mb-1">Cover Image (URL)</label>
+                <input
+                  type="text"
+                  value={productForm.image}
+                  onChange={(e) => setProductForm({ ...productForm, image: e.target.value })}
+                  placeholder="e.g. https://images.unsplash.com/... or local path"
+                  className="w-full rounded-lg bg-brand-warm-white border border-brand-teal/15 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand-teal"
+                />
+              </div>
+
+              <div>
                 <label className="block font-bold text-brand-charcoal uppercase mb-1">Short Card Subtitle</label>
                 <input
                   type="text"
@@ -821,24 +867,35 @@ export default function Dashboard() {
             </div>
 
             {/* Simulated Live Product Card */}
-            <div className="border border-brand-teal/15 bg-white rounded-3xl p-5 shadow relative space-y-4">
-              {productPreviewItem.badge && (
-                <span className="absolute top-4 right-4 bg-brand-pink/20 text-brand-charcoal text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-                  {productPreviewItem.badge}
+            <div className="border border-brand-teal/15 bg-white rounded-3xl overflow-hidden shadow relative flex flex-col justify-between">
+              {/* Product Cover Image */}
+              <div className="relative h-32 w-full overflow-hidden bg-brand-teal/5">
+                <img
+                  src={productPreviewItem.image || 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80'}
+                  alt={productPreviewItem.name}
+                  className="w-full h-full object-cover"
+                />
+                {productPreviewItem.badge && (
+                  <span className="absolute top-2 right-2 bg-brand-pink text-brand-charcoal text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                    {productPreviewItem.badge}
+                  </span>
+                )}
+                <span className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm text-brand-teal-deep text-[8px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider shadow-sm">
+                  {productPreviewItem.category}
                 </span>
-              )}
-              <div className="flex items-center gap-3">
-                <span className="text-3xl p-2 bg-brand-teal/5 rounded-xl">{productPreviewItem.icon}</span>
-                <div>
-                  <span className="block text-[8px] uppercase tracking-wider font-bold text-brand-sage">{productPreviewItem.category}</span>
-                  <h4 className="font-serif font-bold text-sm text-brand-charcoal">{productPreviewItem.name}</h4>
-                </div>
               </div>
-              <p className="text-xs text-brand-charcoal/70">{productPreviewItem.shortDesc}</p>
-              
-              <div className="flex items-center justify-between border-t border-brand-teal/5 pt-3">
-                <span className="font-bold text-brand-teal-deep text-base">R{productPreviewItem.price}</span>
-                <span className="text-xs font-semibold text-brand-teal uppercase hover:underline">View Mock Details →</span>
+
+              <div className="p-4 space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">{productPreviewItem.icon}</span>
+                  <h4 className="font-serif font-bold text-sm text-brand-charcoal leading-tight">{productPreviewItem.name}</h4>
+                </div>
+                <p className="text-[10px] text-brand-charcoal/70 line-clamp-2">{productPreviewItem.shortDesc}</p>
+                
+                <div className="flex items-center justify-between border-t border-brand-teal/5 pt-2 mt-2">
+                  <span className="font-bold text-brand-teal-deep text-sm">R{productPreviewItem.price}</span>
+                  <span className="text-[10px] font-semibold text-brand-teal uppercase">View Details →</span>
+                </div>
               </div>
             </div>
 

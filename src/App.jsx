@@ -40,9 +40,25 @@ function AppContent() {
     bgOpacity = 'opacity-[0.45]';
   }
 
-  // Initialize databases on initial run
+  // Initialize databases on initial run with migration support
   useEffect(() => {
-    if (!localStorage.getItem('hm_products')) {
+    const storedProducts = localStorage.getItem('hm_products');
+    let needsMigration = !storedProducts;
+    
+    if (storedProducts) {
+      try {
+        const parsed = JSON.parse(storedProducts);
+        // If parsed database exists but is empty or missing image fields, force update
+        if (parsed.length === 0 || !parsed[0].hasOwnProperty('image')) {
+          needsMigration = true;
+          console.log("Database out of date: migrating products list to support cover images.");
+        }
+      } catch (err) {
+        needsMigration = true;
+      }
+    }
+
+    if (needsMigration) {
       const defaultProducts = [
         {
           id: 'food-medicine-guide',
@@ -50,6 +66,7 @@ function AppContent() {
           category: 'Digital Guides',
           price: 180,
           icon: '🥗',
+          image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=80',
           shortDesc: 'A comprehensive, nurse-approved whole-food recipe and nutrition guide designed to promote wellness, improve gut health, and manage blood pressure.',
           longDesc: 'Fad diets are often unsustainable and can harm your health. This professional, nurse-led digital guide translates clinical nutrition principles into simple, delicious daily habits. Focus on whole-food ingredients that lower systemic inflammation, restore digestive health, and supply natural, sustainable energy.',
           features: [
@@ -67,6 +84,7 @@ function AppContent() {
           category: 'Journals & Trackers',
           price: 250,
           icon: '⚖️',
+          image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=600&q=80',
           shortDesc: 'A premium 12-week printed journal and tracker focused on sustainable behavior modification, meal logging, and body reflection.',
           longDesc: 'Lasting weight loss isn’t about calorie counting alone; it’s about understanding your default habit loops and triggers. This physical journal provides a structured space to track your daily lifestyle choices, monitor emotional eating triggers, and establish habits that ensure you keep the weight off for life.',
           features: [
@@ -84,6 +102,7 @@ function AppContent() {
           category: 'Digital Guides',
           price: 150,
           icon: '🏠',
+          image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80',
           shortDesc: 'A step-by-step decluttering workbook to help you sort, simplify, and design calm, stress-free living and workspaces.',
           longDesc: 'A disorganized physical environment directly translates to mental overload and elevated stress. This digital workbook offers a clinical, stress-reducing approach to sorting your household. Learn practical sorting techniques, outline storage logic, and craft a clean, productive home environment that supports mental wellness.',
           features: [
@@ -101,6 +120,7 @@ function AppContent() {
           category: 'OHS Compliance',
           price: 450,
           icon: '🏥',
+          image: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=600&q=80',
           shortDesc: 'Essential templates, checklists, and medical surveillance registers to help small-to-medium businesses meet OHS Act requirements.',
           longDesc: 'Navigating workplace safety regulations under the South African Occupational Health and Safety (OHS) Act can be overwhelming for small businesses. This toolkit provides the foundational files and templates required to build a compliant medical surveillance program, prepare for safety audits, and log worker health files.',
           features: [
@@ -118,6 +138,7 @@ function AppContent() {
           category: 'Digital Guides',
           price: 120,
           icon: '🌱',
+          image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80',
           shortDesc: 'An interactive workbook containing questionnaires and self-coaching worksheets to evaluate and balance all dimensions of your life.',
           longDesc: 'Wellness is multi-dimensional. When one area is neglected, it drags down the rest. This workbook guides you through an in-depth self-assessment of the 8 dimensions of wellness. Plot your current wellness wheel, identify growth opportunities, and construct a realistic, personalized action plan for a balanced life.',
           features: [
@@ -135,6 +156,7 @@ function AppContent() {
           category: 'Digital Guides',
           price: 95,
           icon: '🥗',
+          image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80',
           shortDesc: 'A structured 7-day nutritional roadmap featuring anti-inflammatory recipes to optimize digestion and jumpstart gut healing.',
           longDesc: 'Chronic inflammation is at the root of many modern diseases and fatigue levels. This structured, 7-day culinary roadmap contains simple, nutritious, anti-inflammatory recipes. It is designed to calm your digestive tract, improve gut health, and restore vital energy levels.',
           features: [
