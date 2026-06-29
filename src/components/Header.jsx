@@ -39,11 +39,11 @@ export default function Header() {
         <div className="flex items-center justify-between">
           
           {/* Logo and Business Name */}
-          <Link to="/" className="flex items-center gap-2 xs:gap-3 group">
+          <Link to="/" className="flex items-center gap-1 group">
             <img
               src="/no-background-logo.png"
               alt="HM Occhealth & Holistic Wellness Logo"
-              className={`object-contain transition-all duration-300 ${
+              className={`object-contain transition-all duration-300 -mr-1.5 xs:-mr-3 sm:-mr-4 ${
                 isLightHeader ? 'w-28 h-18 sm:w-36 sm:h-24' : 'w-22 h-14 sm:w-24 sm:h-16'
               }`}
             />
