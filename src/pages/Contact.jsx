@@ -22,9 +22,82 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const saveBookingToLocalStorage = (bookingData) => {
+    try {
+      const storedBookings = localStorage.getItem('hm_bookings');
+      const bookings = storedBookings ? JSON.parse(storedBookings) : [];
+      const newBooking = {
+        id: 'B-' + Date.now(),
+        date: new Date().toLocaleDateString('en-ZA') + ' ' + new Date().toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' }),
+        status: 'Pending',
+        type: 'Consultation',
+        ...bookingData
+      };
+      bookings.unshift(newBooking);
+      localStorage.setItem('hm_bookings', JSON.stringify(bookings));
+    } catch (err) {
+      console.error("Error saving booking:", err);
+    }
+  };
+
+  const serviceLabels = {
+    occhealth: 'Occupational Health Medicals',
+    loseit: 'Lose It For Life (Weight Coaching)',
+    foodmedicine: 'Let Food Be Your Medicine (Nutrition)',
+    organizing: 'Home Organizing',
+    coaching: 'Wellness Coaching'
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate submission
+    
+    const serviceName = serviceLabels[formData.service] || formData.service;
+    saveBookingToLocalStorage({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      service: serviceName,
+      message: formData.message
+    });
+
+    setSubmitted(true);
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      service: 'coaching',
+      message: ''
+    });
+  };
+
+  const handleWhatsAppSubmit = (e) => {
+    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+      alert('Please fill out all fields before booking via WhatsApp.');
+      return;
+    }
+
+    const serviceName = serviceLabels[formData.service] || formData.service;
+    saveBookingToLocalStorage({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      service: serviceName,
+      message: formData.message
+    });
+
+    const msg = `Hello Sr. Hazel, I would like to book a consultation for: "${serviceName}".
+
+My Details:
+- Name: ${formData.name}
+- Phone: ${formData.phone}
+- Email: ${formData.email}
+
+Inquiry Details:
+${formData.message}`;
+
+    const whatsappUrl = `https://wa.me/27615370217?text=${encodeURIComponent(msg)}`;
+    window.open(whatsappUrl, '_blank');
+
     setSubmitted(true);
     setFormData({
       name: '',
@@ -236,12 +309,21 @@ export default function Contact() {
                   ></textarea>
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-brand-teal text-white hover:bg-brand-teal-deep hover:scale-[1.01] py-3 text-sm font-semibold transition-all shadow-md mt-2"
-                >
-                  Book Consultation Slot
-                </button>
+                <div className="grid gap-4 sm:grid-cols-2 mt-2">
+                  <button
+                    type="submit"
+                    className="w-full rounded-full bg-brand-teal text-white hover:bg-brand-teal-deep py-3.5 text-sm font-semibold transition-all shadow-md"
+                  >
+                    Submit Booking Request
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleWhatsAppSubmit}
+                    className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] py-3.5 text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2"
+                  >
+                    Book via WhatsApp
+                  </button>
+                </div>
 
               </form>
             )}

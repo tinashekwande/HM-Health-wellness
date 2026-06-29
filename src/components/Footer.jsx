@@ -111,8 +111,12 @@ export default function Footer() {
           <p className="text-xs text-brand-warm-white/50">
             Copyright © {new Date().getFullYear()} HM Occhealth & Holistic Wellness. All rights reserved.
           </p>
-          <div className="flex gap-4 text-xs text-brand-warm-white/50">
+          <div className="flex items-center gap-4 text-xs text-brand-warm-white/50">
             <span>Registered Nurse & Holistic Wellness Practitioner</span>
+            <span className="hidden sm:inline">•</span>
+            <Link to="/dashboard" className="hover:text-brand-teal hover:underline transition-colors">
+              Management Portal
+            </Link>
           </div>
         </div>
       </div>

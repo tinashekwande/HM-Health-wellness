@@ -48,9 +48,77 @@ export default function OccupationalHealth() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const saveBookingToLocalStorage = (bookingData) => {
+    try {
+      const storedBookings = localStorage.getItem('hm_bookings');
+      const bookings = storedBookings ? JSON.parse(storedBookings) : [];
+      const newBooking = {
+        id: 'B-' + Date.now(),
+        date: new Date().toLocaleDateString('en-ZA') + ' ' + new Date().toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' }),
+        status: 'Pending',
+        type: 'B2B Assessment',
+        ...bookingData
+      };
+      bookings.unshift(newBooking);
+      localStorage.setItem('hm_bookings', JSON.stringify(bookings));
+    } catch (err) {
+      console.error("Error saving booking:", err);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate API submission
+    
+    saveBookingToLocalStorage({
+      name: formData.contactPerson,
+      phone: formData.phone,
+      email: formData.email,
+      service: `OHS Assessment: ${formData.companyName} (${formData.industry}, ${formData.employees} staff)`,
+      message: formData.message
+    });
+
+    setSubmitted(true);
+    setFormData({
+      companyName: '',
+      contactPerson: '',
+      phone: '',
+      email: '',
+      employees: '',
+      industry: '',
+      message: ''
+    });
+  };
+
+  const handleWhatsAppSubmit = (e) => {
+    if (!formData.companyName || !formData.contactPerson || !formData.phone || !formData.email || !formData.employees || !formData.industry || !formData.message) {
+      alert('Please fill out all fields before submitting via WhatsApp.');
+      return;
+    }
+
+    saveBookingToLocalStorage({
+      name: formData.contactPerson,
+      phone: formData.phone,
+      email: formData.email,
+      service: `OHS Assessment: ${formData.companyName} (${formData.industry}, ${formData.employees} staff)`,
+      message: formData.message
+    });
+
+    const msg = `Hello Sr. Hazel, I would like to request a B2B Occupational Health Assessment.
+
+Company Details:
+- Company Name: ${formData.companyName}
+- Contact Person: ${formData.contactPerson}
+- Phone: ${formData.phone}
+- Email: ${formData.email}
+- Employees: ${formData.employees}
+- Industry: ${formData.industry}
+
+Assessment Request Message:
+${formData.message}`;
+
+    const whatsappUrl = `https://wa.me/27615370217?text=${encodeURIComponent(msg)}`;
+    window.open(whatsappUrl, '_blank');
+
     setSubmitted(true);
     setFormData({
       companyName: '',
@@ -288,12 +356,21 @@ export default function OccupationalHealth() {
                     ></textarea>
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full rounded-full bg-brand-charcoal text-white hover:bg-brand-charcoal/90 hover:scale-[1.02] py-3 text-sm font-semibold transition-all shadow-md mt-2"
-                  >
-                    Submit Assessment Request
-                  </button>
+                  <div className="grid gap-4 sm:grid-cols-2 mt-2">
+                    <button
+                      type="submit"
+                      className="w-full rounded-full bg-brand-charcoal text-white hover:bg-brand-charcoal/90 py-3.5 text-sm font-semibold transition-all shadow-md"
+                    >
+                      Submit Request
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleWhatsAppSubmit}
+                      className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] py-3.5 text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2"
+                    >
+                      Request via WhatsApp
+                    </button>
+                  </div>
                 </form>
               )}
             </div>
