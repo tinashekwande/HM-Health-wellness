@@ -60,13 +60,13 @@ export default function About() {
       </section>
 
       {/* 3. Credentials & Clinical Framework */}
-      <section className="bg-brand-teal/5 py-12 px-6 sm:px-12 rounded-3xl">
+      <section className="bg-white/40 border border-brand-teal/10 backdrop-blur-sm py-12 px-6 sm:px-12 rounded-3xl">
         <h3 className="text-xl sm:text-2xl font-serif text-brand-charcoal font-semibold text-center mb-8">
           Core Professional Pillars
         </h3>
         <div className="grid gap-6 md:grid-cols-3">
           
-          <div className="bg-white border border-brand-teal/10 rounded-2xl p-6 shadow-sm space-y-3">
+          <div className="bg-white/90 border border-white/40 backdrop-blur-md rounded-2xl p-6 shadow-md space-y-3">
             <div className="text-2xl">👩‍⚕️</div>
             <h4 className="font-serif font-semibold text-lg text-brand-charcoal">Clinical Registered Nurse</h4>
             <p className="text-xs text-brand-charcoal/70 leading-relaxed">
@@ -74,7 +74,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="bg-white border border-brand-teal/10 rounded-2xl p-6 shadow-sm space-y-3">
+          <div className="bg-white/90 border border-white/40 backdrop-blur-md rounded-2xl p-6 shadow-md space-y-3">
             <div className="text-2xl">⚡</div>
             <h4 className="font-serif font-semibold text-lg text-brand-charcoal">Critical Care Nursing</h4>
             <p className="text-xs text-brand-charcoal/70 leading-relaxed">
@@ -82,7 +82,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="bg-white border border-brand-teal/10 rounded-2xl p-6 shadow-sm space-y-3">
+          <div className="bg-white/90 border border-white/40 backdrop-blur-md rounded-2xl p-6 shadow-md space-y-3">
             <div className="text-2xl">🌿</div>
             <h4 className="font-serif font-semibold text-lg text-brand-charcoal">Holistic Wellness</h4>
             <p className="text-xs text-brand-charcoal/70 leading-relaxed">
@@ -96,7 +96,7 @@ export default function About() {
       {/* 4. Vision, Mission, and Philosophy */}
       <section className="grid gap-8 md:grid-cols-3">
         {/* Mission */}
-        <div className="border border-brand-teal/10 rounded-2xl p-6 space-y-4 bg-white shadow-sm">
+        <div className="border border-white/40 rounded-2xl p-6 space-y-4 bg-white/90 backdrop-blur-md shadow-md">
           <div className="w-10 h-10 rounded-full bg-brand-pink/20 text-brand-charcoal flex items-center justify-center text-lg font-bold">
             🎯
           </div>
@@ -107,7 +107,7 @@ export default function About() {
         </div>
 
         {/* Vision */}
-        <div className="border border-brand-teal/10 rounded-2xl p-6 space-y-4 bg-white shadow-sm">
+        <div className="border border-white/40 rounded-2xl p-6 space-y-4 bg-white/90 backdrop-blur-md shadow-md">
           <div className="w-10 h-10 rounded-full bg-brand-teal/10 text-brand-teal-deep flex items-center justify-center text-lg font-bold">
             👁️
           </div>
@@ -118,7 +118,7 @@ export default function About() {
         </div>
 
         {/* Philosophy */}
-        <div className="border border-brand-teal/10 rounded-2xl p-6 space-y-4 bg-white shadow-sm">
+        <div className="border border-white/40 rounded-2xl p-6 space-y-4 bg-white/90 backdrop-blur-md shadow-md">
           <div className="w-10 h-10 rounded-full bg-brand-sage-light/20 text-brand-charcoal flex items-center justify-center text-lg font-bold">
             💡
           </div>

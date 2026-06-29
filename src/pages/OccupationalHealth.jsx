@@ -89,7 +89,7 @@ export default function OccupationalHealth() {
         
         {/* Left Side: Compliance Info */}
         <div className="lg:col-span-7 space-y-8">
-          <div className="bg-white rounded-3xl border border-brand-teal/10 p-6 sm:p-8 shadow-sm space-y-6">
+          <div className="bg-white/90 rounded-3xl border border-white/40 p-6 sm:p-8 shadow-md backdrop-blur-md space-y-6">
             <h2 className="text-2xl font-serif text-brand-charcoal font-semibold">
               Clinical Medical Surveillance
             </h2>
@@ -98,13 +98,13 @@ export default function OccupationalHealth() {
             </p>
             
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="p-4 rounded-2xl bg-brand-warm-white border border-brand-teal/5 space-y-1">
+              <div className="p-4 rounded-2xl bg-white/50 border border-brand-teal/10 space-y-1">
                 <h4 className="font-bold font-serif text-sm text-brand-teal-deep">🏗️ Construction Sites</h4>
                 <p className="text-xs text-brand-charcoal/70 leading-relaxed">
                   Baseline, periodic, and exit medicals, height work fitness, and OHS file requirements.
                 </p>
               </div>
-              <div className="p-4 rounded-2xl bg-brand-warm-white border border-brand-teal/5 space-y-1">
+              <div className="p-4 rounded-2xl bg-white/50 border border-brand-teal/10 space-y-1">
                 <h4 className="font-bold font-serif text-sm text-brand-teal-deep">🏭 Factories & Industrial</h4>
                 <p className="text-xs text-brand-charcoal/70 leading-relaxed">
                   Workplace-specific risk assessments, audiometry (hearing), spirometry (lung), and vision checks.
@@ -119,21 +119,21 @@ export default function OccupationalHealth() {
               Types of Medical Assessments Provided
             </h3>
             <div className="grid gap-4 sm:grid-cols-3">
-              <div className="border border-brand-teal/10 bg-white rounded-2xl p-5 shadow-sm space-y-2">
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md space-y-2">
                 <div className="text-xl">📥</div>
                 <h4 className="font-serif font-bold text-sm text-brand-charcoal">Baseline Medicals</h4>
                 <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
                   Conducted before employee begins work to assess physical suitability and log baseline health status.
                 </p>
               </div>
-              <div className="border border-brand-teal/10 bg-white rounded-2xl p-5 shadow-sm space-y-2">
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md space-y-2">
                 <div className="text-xl">🔄</div>
                 <h4 className="font-serif font-bold text-sm text-brand-charcoal">Periodic Medicals</h4>
                 <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
                   Routine health checks performed at intervals to track occupational exposure (e.g. lung, hearing, vision).
                 </p>
               </div>
-              <div className="border border-brand-teal/10 bg-white rounded-2xl p-5 shadow-sm space-y-2">
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md space-y-2">
                 <div className="text-xl">📤</div>
                 <h4 className="font-serif font-bold text-sm text-brand-charcoal">Exit Medicals</h4>
                 <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
@@ -314,7 +314,7 @@ export default function OccupationalHealth() {
             return (
               <div
                 key={idx}
-                className="border border-brand-teal/10 rounded-2xl bg-white shadow-sm overflow-hidden"
+                className="border border-white/40 rounded-2xl bg-white/90 backdrop-blur-md shadow-md overflow-hidden"
               >
                 <button
                   onClick={() => toggleFaq(idx)}

@@ -59,7 +59,7 @@ export default function Contact() {
         <div className="lg:col-span-5 space-y-8">
           
           {/* Business Info Box */}
-          <div className="bg-white border border-brand-teal/10 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+          <div className="bg-white/90 border border-white/40 rounded-3xl p-6 sm:p-8 shadow-md backdrop-blur-md space-y-6">
             <h3 className="text-xl font-serif font-bold text-brand-charcoal border-b border-brand-teal/5 pb-2">
               Contact Information
             </h3>
@@ -104,7 +104,7 @@ export default function Contact() {
           </div>
 
           {/* Styled Map Placeholder */}
-          <div className="relative rounded-3xl border border-brand-teal/10 bg-brand-teal/5 h-64 flex flex-col items-center justify-center text-center p-6 shadow-sm overflow-hidden">
+          <div className="relative rounded-3xl border border-white/40 bg-white/40 backdrop-blur-sm h-64 flex flex-col items-center justify-center text-center p-6 shadow-md overflow-hidden">
             {/* Background design grids */}
             <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none"></div>
             
@@ -127,7 +127,7 @@ export default function Contact() {
 
         {/* Right Column: Inquiry Form */}
         <div className="lg:col-span-7">
-          <div className="bg-white border border-brand-teal/10 rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm">
+          <div className="bg-white/90 border border-white/40 rounded-3xl p-6 sm:p-8 md:p-10 shadow-md backdrop-blur-md">
             <h3 className="text-xl sm:text-2xl font-serif font-semibold text-brand-charcoal mb-4">
               Schedule Your Consultation
             </h3>

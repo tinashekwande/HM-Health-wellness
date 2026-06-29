@@ -152,7 +152,7 @@ export default function Services() {
         </div>
 
         {/* Detailed Card Container */}
-        <div className="bg-white rounded-3xl border border-brand-teal/10 p-6 sm:p-8 md:p-10 shadow-sm backdrop-blur-xl transition-all duration-300">
+        <div className="bg-white/90 rounded-3xl border border-white/40 p-6 sm:p-8 md:p-10 shadow-md backdrop-blur-md transition-all duration-300">
           <div className="grid gap-8 lg:grid-cols-12">
             
             {/* Left Column: Summary */}
@@ -173,7 +173,7 @@ export default function Services() {
                   {activeService.details}
                 </p>
                 
-                <div className="rounded-2xl bg-brand-warm-white p-4 border border-brand-teal/5">
+                <div className="rounded-2xl bg-white/50 p-4 border border-brand-teal/10">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-brand-charcoal/60 leading-none mb-2">
                     Primary Target Audience
                   </h4>
@@ -203,7 +203,7 @@ export default function Services() {
                 {activeService.offerings.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-2xl border border-brand-teal/10 hover:border-brand-teal/30 hover:bg-brand-teal/5 transition-all duration-200 space-y-2"
+                    className="p-4 rounded-2xl border border-brand-teal/10 hover:border-brand-teal/30 hover:bg-brand-teal/10 bg-white/40 transition-all duration-200 space-y-2"
                   >
                     <h4 className="font-serif font-bold text-sm text-brand-charcoal flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-pink shrink-0"></span>
@@ -222,7 +222,7 @@ export default function Services() {
       </section>
 
       {/* 3. Holistic Support Notice */}
-      <section className="bg-brand-warm-white border border-brand-teal/10 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 max-w-4xl mx-auto">
+      <section className="bg-white/90 backdrop-blur-md border border-white/40 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 max-w-4xl mx-auto shadow-md">
         <div className="text-4xl">💡</div>
         <div className="space-y-2">
           <h4 className="font-serif font-semibold text-lg text-brand-charcoal leading-none">
