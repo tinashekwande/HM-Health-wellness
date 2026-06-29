@@ -10,6 +10,27 @@ export default function Dashboard() {
 
   const [activeTab, setActiveTab] = useState('overview');
 
+  // Authentication State
+  const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('hm_authenticated') === 'true');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === 'NurseHazel@Wellness') {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('hm_authenticated', 'true');
+      setLoginError('');
+    } else {
+      setLoginError('Invalid password. Please try again.');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    sessionStorage.removeItem('hm_authenticated');
+  };
+
   // Load products & bookings from localStorage
   const [products, setProducts] = useState([]);
   const [bookings, setBookings] = useState([]);
@@ -187,6 +208,39 @@ export default function Dashboard() {
     setProductEditMode(false);
   };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX_WIDTH = 600;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > MAX_WIDTH) {
+          height = Math.round((height * MAX_WIDTH) / width);
+          width = MAX_WIDTH;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Compress image as JPEG quality 0.7 to fit in local storage
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+        setProductForm((prev) => ({ ...prev, image: dataUrl }));
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+
   // Database Backup / Reset Actions
   const resetDatabaseToDefaults = () => {
     if (window.confirm('WARNING: This will reset all products and bookings to default settings. Existing edits will be lost. Proceed?')) {
@@ -240,6 +294,47 @@ export default function Dashboard() {
   const totalRevenueMock = bookings
     .filter((b) => b.status === 'Confirmed' || b.status === 'Completed')
     .length * 450; // Mock consultation billing value (R450)
+
+  if (!isAuthenticated) {
+    return (
+      <div className="max-w-md mx-auto px-4 pt-32 pb-16">
+        <div className="bg-white/90 border border-white/40 rounded-3xl p-8 shadow-xl backdrop-blur-md space-y-6 text-center animate-fade-in-up">
+          {/* Brand Header */}
+          <div className="space-y-2">
+            <img src="/no-background-logo.png" alt="HM Logo" className="w-24 h-16 mx-auto object-contain" />
+            <h2 className="font-serif font-bold text-2xl text-brand-charcoal">Management Portal</h2>
+            <p className="text-xs text-brand-charcoal/60">Enter password to access bookings and products store setup.</p>
+          </div>
+          
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <input
+                type="password"
+                placeholder="Enter Access Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 text-sm bg-brand-warm-white border border-brand-teal/15 text-brand-charcoal rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-teal text-center"
+              />
+            </div>
+            {loginError && <p className="text-xs text-red-500 font-semibold">{loginError}</p>}
+            
+            <button
+              type="submit"
+              className="w-full bg-brand-teal hover:bg-brand-teal-deep text-white py-3 rounded-full font-semibold text-sm transition-all shadow-md"
+            >
+              Authenticate Portal
+            </button>
+          </form>
+          
+          <div className="pt-2">
+            <Link to="/" className="text-xs text-brand-teal hover:underline">
+              ← Return to Homepage
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-16 space-y-8">
@@ -310,6 +405,13 @@ export default function Dashboard() {
             }`}
           >
             🛒 Products Catalog ({activeProductsCount})
+          </button>
+          <hr className="hidden lg:block border-brand-teal/10 my-2" />
+          <button
+            onClick={handleLogout}
+            className="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-all shrink-0"
+          >
+            🚪 Log Out Workspace
           </button>
         </div>
 
@@ -785,14 +887,46 @@ export default function Dashboard() {
               </div>
 
               <div>
-                <label className="block font-bold text-brand-charcoal uppercase mb-1">Cover Image (URL)</label>
-                <input
-                  type="text"
-                  value={productForm.image}
-                  onChange={(e) => setProductForm({ ...productForm, image: e.target.value })}
-                  placeholder="e.g. https://images.unsplash.com/... or local path"
-                  className="w-full rounded-lg bg-brand-warm-white border border-brand-teal/15 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand-teal"
-                />
+                <label className="block font-bold text-brand-charcoal uppercase mb-1">Cover Image Option</label>
+                <div className="space-y-2">
+                  <div className="flex gap-2">
+                    <label className="px-4 py-2.5 bg-brand-teal/10 text-brand-teal text-xs font-bold rounded-xl cursor-pointer hover:bg-brand-teal/20 transition-all text-center flex-grow">
+                      📁 Upload Image File
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="hidden"
+                      />
+                    </label>
+                    {productForm.image && (
+                      <button
+                        type="button"
+                        onClick={() => setProductForm({ ...productForm, image: '' })}
+                        className="px-3 py-2.5 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 text-xs font-bold transition-all"
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
+                  <div className="text-[10px] text-brand-charcoal/50">Or paste an image URL instead:</div>
+                  <input
+                    type="text"
+                    placeholder="https://images.unsplash.com/..."
+                    value={productForm.image}
+                    onChange={(e) => setProductForm({ ...productForm, image: e.target.value })}
+                    className="w-full rounded-lg bg-brand-warm-white border border-brand-teal/15 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brand-teal text-xs"
+                  />
+                  {productForm.image && (
+                    <div className="relative h-20 w-32 rounded-lg overflow-hidden border border-brand-teal/10 bg-brand-teal/5">
+                      <img
+                        src={productForm.image}
+                        alt="Preview upload"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div>
