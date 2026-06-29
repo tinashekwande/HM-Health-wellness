@@ -27,12 +27,15 @@ export default function Header() {
   }, [location.pathname]);
 
   // Determine if header should have light/transparent styling
+  // Transparent on home page only — teal gradient on all other pages
   const isLightHeader = isHome && !scrolled;
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        isLightHeader ? 'bg-transparent py-5' : 'bg-white/95 border-b border-brand-teal/10 shadow-sm backdrop-blur-md py-3'
+        isHome && !scrolled
+          ? 'bg-transparent py-5'
+          : 'bg-gradient-to-b from-brand-teal-deep/90 to-transparent py-5'
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -50,14 +53,14 @@ export default function Header() {
             <div className="leading-tight">
               <span
                 className={`block font-serif text-sm xs:text-base sm:text-lg md:text-xl font-bold tracking-tight transition-colors duration-300 ${
-                  isLightHeader ? 'text-white' : 'text-brand-teal-deep'
+                  isLightHeader ? 'text-white' : 'text-white'
                 }`}
               >
                 HM Occhealth & Holistic Wellness
               </span>
               <span
                 className={`block text-[9px] xs:text-xs tracking-widest font-semibold uppercase transition-colors duration-300 ${
-                  isLightHeader ? 'text-brand-pink/90' : 'text-brand-sage'
+                  isLightHeader ? 'text-brand-pink/90' : 'text-brand-pink/80'
                 }`}
               >
                 Hazel Kivedo • Registered Nurse
@@ -71,8 +74,8 @@ export default function Header() {
               to="/"
               className={`transition-colors duration-200 py-1 border-b-2 ${
                 isHome
-                  ? isLightHeader ? 'text-white border-white' : 'text-brand-teal border-brand-teal'
-                  : isLightHeader ? 'text-white/80 hover:text-white border-transparent' : 'text-brand-charcoal/80 hover:text-brand-teal border-transparent'
+                  ? 'text-white border-white'
+                  : 'text-white/80 hover:text-white border-transparent hover:border-white/50'
               }`}
             >
               Home
@@ -81,8 +84,8 @@ export default function Header() {
               to="/about"
               className={`transition-colors duration-200 py-1 border-b-2 ${
                 location.pathname === '/about'
-                  ? 'text-brand-teal border-brand-teal'
-                  : isLightHeader ? 'text-white/80 hover:text-white border-transparent' : 'text-brand-charcoal/80 hover:text-brand-teal border-transparent'
+                  ? 'text-white border-white'
+                  : 'text-white/80 hover:text-white border-transparent hover:border-white/50'
               }`}
             >
               About
@@ -91,8 +94,8 @@ export default function Header() {
               to="/services"
               className={`transition-colors duration-200 py-1 border-b-2 ${
                 location.pathname === '/services'
-                  ? 'text-brand-teal border-brand-teal'
-                  : isLightHeader ? 'text-white/80 hover:text-white border-transparent' : 'text-brand-charcoal/80 hover:text-brand-teal border-transparent'
+                  ? 'text-white border-white'
+                  : 'text-white/80 hover:text-white border-transparent hover:border-white/50'
               }`}
             >
               Services
@@ -101,8 +104,8 @@ export default function Header() {
               to="/products"
               className={`transition-colors duration-200 py-1 border-b-2 ${
                 location.pathname === '/products'
-                  ? 'text-brand-teal border-brand-teal'
-                  : isLightHeader ? 'text-white/80 hover:text-white border-transparent' : 'text-brand-charcoal/80 hover:text-brand-teal border-transparent'
+                  ? 'text-white border-white'
+                  : 'text-white/80 hover:text-white border-transparent hover:border-white/50'
               }`}
             >
               Products
@@ -111,8 +114,8 @@ export default function Header() {
               to="/occupational-health"
               className={`transition-colors duration-200 py-1 border-b-2 ${
                 location.pathname === '/occupational-health'
-                  ? 'text-brand-teal border-brand-teal'
-                  : isLightHeader ? 'text-white/80 hover:text-white border-transparent' : 'text-brand-charcoal/80 hover:text-brand-teal border-transparent'
+                  ? 'text-white border-white'
+                  : 'text-white/80 hover:text-white border-transparent hover:border-white/50'
               }`}
             >
               Occupational Health
@@ -121,8 +124,8 @@ export default function Header() {
               to="/contact"
               className={`transition-colors duration-200 py-1 border-b-2 ${
                 location.pathname === '/contact'
-                  ? 'text-brand-teal border-brand-teal'
-                  : isLightHeader ? 'text-white/80 hover:text-white border-transparent' : 'text-brand-charcoal/80 hover:text-brand-teal border-transparent'
+                  ? 'text-white border-white'
+                  : 'text-white/80 hover:text-white border-transparent hover:border-white/50'
               }`}
             >
               Contact
@@ -133,11 +136,7 @@ export default function Header() {
           <div className="hidden sm:flex items-center gap-4">
             <Link
               to="/contact"
-              className={`inline-flex items-center justify-center text-sm font-semibold rounded-2xl px-5 py-2.5 transition-all duration-300 shadow-sm ${
-                isLightHeader
-                  ? 'bg-white text-brand-teal-deep hover:bg-brand-pink hover:text-brand-charcoal hover:shadow-md'
-                  : 'bg-brand-teal text-white hover:bg-brand-teal-deep hover:shadow-md'
-              }`}
+              className="inline-flex items-center justify-center text-sm font-semibold rounded-2xl px-5 py-2.5 transition-all duration-300 shadow-sm bg-white text-brand-teal-deep hover:bg-brand-pink hover:text-brand-charcoal hover:shadow-md"
             >
               Book a Consultation
             </Link>
@@ -146,11 +145,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden p-2 rounded-full border transition-all ${
-              isLightHeader
-                ? 'border-white/20 bg-white/10 text-white hover:bg-white/20'
-                : 'border-brand-teal/15 bg-brand-warm-white text-brand-charcoal hover:bg-brand-teal/5'
-            }`}
+            className="md:hidden p-2 rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 transition-all"
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle Navigation Menu"
           >
@@ -170,7 +165,7 @@ export default function Header() {
 
       {/* Mobile Drawer Dropdown */}
       <div
-        className={`md:hidden absolute w-full bg-white shadow-lg transition-all duration-300 overflow-hidden ${
+        className={`md:hidden absolute w-full bg-brand-warm-white shadow-lg transition-all duration-300 overflow-hidden ${
           mobileMenuOpen ? 'max-h-[380px] py-4 border-b border-brand-teal/10' : 'max-h-0'
         }`}
       >

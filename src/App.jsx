@@ -210,9 +210,9 @@ function AppContent() {
           className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out ${bgOpacity}`}
           style={{ backgroundImage: `url('${bgImage}')` }}
         ></div>
-        {/* Soft white overlay to keep the image subtle and preserve high readability */}
+        {/* Very subtle white overlay — keeps content readable without drowning the background */}
         {path !== '/' && (
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[0.5px]"></div>
+          <div className="absolute inset-0 bg-white/10"></div>
         )}
         
         {/* Soft Teal glow at top-left */}

@@ -69,8 +69,8 @@ export default function Home() {
   };
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16">
-      {/* Schema.org Structured Data */}
+    <>
+      {/* Schema.org Structured Data — outside the space-y wrapper to avoid triggering margin-top on hero */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicSchema) }}
@@ -79,9 +79,10 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      
+
+      <div className="space-y-16 sm:space-y-24 pb-16">
       {/* 1. Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center">
           {/* Video Background with Overlay */}
           <div className="absolute inset-0 z-0">
             <video
@@ -95,7 +96,10 @@ export default function Home() {
               <source src="/background-video.mp4?v=3" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
+            {/* Left-to-right colour overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-brand-teal-deep/90 via-brand-teal-deep/75 to-brand-charcoal/45"></div>
+            {/* Top-to-bottom vignette — ensures nav area is covered seamlessly */}
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-teal-deep/70 via-transparent to-transparent"></div>
           </div>
 
         {/* Hero Content */}
@@ -404,5 +408,6 @@ export default function Home() {
       </section>
 
     </div>
+    </>
   );
 }
