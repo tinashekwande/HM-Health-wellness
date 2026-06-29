@@ -98,9 +98,82 @@ const servicesData = [
   }
 ];
 
+const faqData = [
+  {
+    question: "What is required for a construction baseline medical?",
+    answer: "A baseline construction medical typically requires the employee's ID document/passport, any previous medical certificates (if available), list of current chronic medications, and job description to assess specific work hazards (such as work at heights or driving heavy machinery). The assessment includes a physical examination, vital signs check, vision screening, and if required, lung function (spirometry) and hearing (audiometry) tests."
+  },
+  {
+    question: "Does HM Occhealth provide on-site workplace screening?",
+    answer: "Yes, HM Occhealth provides on-site workplace medical screening and surveillance for factories, construction sites, and corporate offices across Bellville and the greater Cape Town area, ensuring minimal downtime for your workforce."
+  },
+  {
+    question: "Is the 'Lose It for Life' program a diet?",
+    answer: "No, 'Lose It for Life' is not a diet. It is a sustainable, behavior-change coaching program. We focus on long-term lifestyle transformation, helping you rebuild your relationship with food, manage stress, and track daily habits to ensure weight loss is permanent."
+  },
+  {
+    question: "Do I need a doctor's referral to see Sr Hazel?",
+    answer: "No, a doctor's referral is not required. You can book a direct consultation with Sr. Hazel for personal wellness coaching, nutrition guidance, home organizing, or B2B occupational health assessments."
+  }
+];
+
 export default function Services() {
   const [activeTab, setActiveTab] = useState('occhealth');
+  const [openFaqIdx, setOpenFaqIdx] = useState(null);
   const location = useLocation();
+
+  useSeo(
+    'OHS Medicals & Wellness Coaching Services Bellville',
+    'Explore our B2B construction site medicals, industrial screenings, and holistic wellness programs like Lose It For Life and Let Food Be Your Medicine.'
+  );
+
+  const toggleFaq = (idx) => {
+    setOpenFaqIdx(prev => (prev === idx ? null : idx));
+  };
+
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Occupational Health Medicals",
+        "description": "OHS Act compliant baseline, periodic, and exit medical assessments including lung function, vision, and hearing tests."
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Lose It For Life Weight Loss Program",
+        "description": "Holistic nurse-led weight loss coaching focusing on sustainable behavior modification and healthy daily habits."
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Let Food Be Your Medicine Nutrition Guidance",
+        "description": "Whole-food nutrition advice designed to reduce inflammation, lower blood pressure, and boost energy levels."
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Home Organizing for Wellness",
+        "description": "Professional decluttering and spatial organizing to cultivate peace of mind and minimize daily domestic stress."
+      }
+    ]
+  };
+
+  const faqPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqData.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
 
   // Support deep linking to tabs if specified in state or query
   useEffect(() => {
@@ -113,6 +186,15 @@ export default function Services() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-10 space-y-16">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
+      />
       
       {/* 1. Header Banner */}
       <section className="text-center max-w-3xl mx-auto space-y-4">
@@ -120,7 +202,7 @@ export default function Services() {
           Our Services
         </span>
         <h1 className="text-4xl sm:text-5xl font-serif text-brand-charcoal font-bold leading-tight">
-          Practical Pillars of Wellness
+          Clinical Occupational Medicals & Lifestyle Transformation Services
         </h1>
         <p className="text-brand-charcoal/70 text-sm sm:text-base leading-relaxed">
           Explore our nurse-led service pathways. We provide regulatory clinical assessments for businesses and personalized lifestyle transformation packages for individuals.
@@ -231,6 +313,50 @@ export default function Services() {
           <p className="text-xs text-brand-charcoal/80 leading-relaxed">
             True transformation occurs at the intersection of nutrition, habit restructuring, and spatial organization. If you live in chaos, or fuel your body with toxic elements, your wellness coaching will face severe resistance. That is why Sr. Hazel advocates for a unified path.
           </p>
+        </div>
+      </section>
+
+      {/* 4. Interactive FAQs Accordion */}
+      <section className="max-w-4xl mx-auto space-y-8 mt-12">
+        <div className="text-center space-y-2">
+          <span className="text-xs uppercase font-bold tracking-widest text-brand-teal">
+            Frequently Asked Questions
+          </span>
+          <h2 className="text-3xl font-serif text-brand-charcoal font-bold">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-brand-charcoal/70 text-xs sm:text-sm">
+            Find answers to common questions about our occupational testing compliance and holistic coaching packages.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {faqData.map((faq, idx) => {
+            const isOpen = openFaqIdx === idx;
+            return (
+              <div
+                key={idx}
+                className="bg-white/90 backdrop-blur-md rounded-2xl border border-brand-teal/10 shadow-sm overflow-hidden"
+              >
+                <button
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-brand-teal/5 transition-all outline-none"
+                >
+                  <span className="font-serif font-semibold text-sm sm:text-base text-brand-charcoal">
+                    {faq.question}
+                  </span>
+                  <span className="text-brand-teal font-bold text-lg">
+                    {isOpen ? '−' : '+'}
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-brand-charcoal/80 leading-relaxed border-t border-brand-teal/5 bg-brand-teal/[0.01]">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 

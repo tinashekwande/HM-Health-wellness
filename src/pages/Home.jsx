@@ -5,12 +5,80 @@ import WellnessTree from '../components/WellnessTree';
 
 export default function Home() {
   useSeo(
-    'Home',
-    'Transforming lives through practical, holistic wellness and compliant occupational health medical assessments. Serving Bellville, Cape Town.'
+    'Occupational Health Medicals & Holistic Wellness Bellville',
+    'Get OHS Act compliant occupational health medicals, construction site certificates, and holistic weight loss programs in Bellville & Cape Town from Sr Hazel Kivedo.'
   );
+
+  const clinicSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "HM Occhealth & Holistic Wellness",
+    "alternateName": "HM Health Clear",
+    "description": "Led by Registered Nurse Sr Hazel Kivedo, providing professional Occupational Health Medicals, OHS Act compliance, and holistic wellness programs in Bellville, Cape Town.",
+    "url": window.location.origin,
+    "logo": `${window.location.origin}/no-background-logo.png`,
+    "image": `${window.location.origin}/hazel.png`,
+    "telephone": "+27615370217",
+    "email": "hmhealthclear@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bellville",
+      "addressRegion": "Western Cape",
+      "addressCountry": "ZA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-33.8943",
+      "longitude": "18.6294"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    ],
+    "priceRange": "$$"
+  };
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Hazel Kivedo",
+    "jobTitle": "Registered Nurse & Holistic Wellness Practitioner",
+    "description": "Critical Care Registered Nurse and Certified Occupational Health Practitioner in Bellville, Cape Town, specializing in occupational health surveillance and lifestyle transformation coaching.",
+    "telephone": "+27615370217",
+    "email": "hmhealthclear@gmail.com",
+    "worksFor": {
+      "@type": "MedicalOrganization",
+      "name": "HM Occhealth & Holistic Wellness"
+    },
+    "alumniOf": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "South African Nursing Council (SANC)"
+      }
+    ]
+  };
 
   return (
     <div className="space-y-16 sm:space-y-24 pb-16">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       
       {/* 1. Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -38,11 +106,11 @@ export default function Home() {
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight font-serif text-white">
-              Transforming Lives Through Practical, Holistic Wellness
+              Occupational Health Medicals & Holistic Wellness in Bellville, Cape Town
             </h1>
             
             <p className="text-base sm:text-lg text-brand-warm-white/90 leading-relaxed max-w-2xl">
-              Helping individuals, families, and workplaces achieve healthier, balanced, purpose-driven lives through nurse-led coaching and compliant health assessments.
+              Certified occupational health assessments and registered nurse-led wellness coaching. We help local businesses maintain OHS Act compliance and support individuals with sustainable behavior transformation programs.
             </p>
             
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
@@ -131,7 +199,7 @@ export default function Home() {
               
               <img
                 src="/hazel.png"
-                alt="Sr. Hazel Kivedo portrait"
+                alt="Sr. Hazel Kivedo - Registered Nurse & Holistic Health Coach in Bellville"
                 className="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-full border-4 border-brand-teal/15 shadow-xl relative z-0"
               />
             </div>

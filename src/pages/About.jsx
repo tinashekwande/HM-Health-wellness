@@ -4,12 +4,51 @@ import useSeo from '../hooks/useSeo';
 
 export default function About() {
   useSeo(
-    'About Sr. Hazel',
-    'Meet Sr. Hazel Kivedo, Registered Nurse, Critical Care Nurse, and Holistic Wellness Practitioner guiding Bellville and Cape Town through health transformations.'
+    'Registered Nurse & Wellness Coach Sr Hazel Kivedo | About',
+    'Meet Sr Hazel Kivedo, a Registered Nurse & Certified Occupational Health Practitioner providing faith-rooted wellness coaching & OHS compliance in Cape Town.'
   );
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Hazel Kivedo",
+    "jobTitle": "Registered Nurse & Holistic Wellness Practitioner",
+    "description": "Critical Care Registered Nurse and Certified Occupational Health Practitioner in Bellville, Cape Town, offering OHS Act compliant medicals, sustainable weight loss, and home organizing coaching.",
+    "telephone": "+27615370217",
+    "email": "hmhealthclear@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bellville",
+      "addressRegion": "Western Cape",
+      "addressCountry": "ZA"
+    },
+    "worksFor": {
+      "@type": "MedicalOrganization",
+      "name": "HM Occhealth & Holistic Wellness"
+    },
+    "knowsAbout": [
+      "Occupational Health Surveillance",
+      "OHS Act Compliance",
+      "Holistic Wellness Coaching",
+      "Sustainable Weight Loss",
+      "Whole-food Nutrition",
+      "Home Organizing for Mental Wellness"
+    ],
+    "alumniOf": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "South African Nursing Council (SANC)"
+      }
+    ]
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-10 space-y-16">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       
       {/* 1. Header Banner */}
       <section className="text-center max-w-3xl mx-auto space-y-4">
@@ -17,7 +56,7 @@ export default function About() {
           Meet the Practitioner
         </span>
         <h1 className="text-4xl sm:text-5xl font-serif text-brand-charcoal font-bold leading-tight">
-          Sr. Hazel Kivedo
+          About Sr. Hazel Kivedo | Registered Nurse & Holistic Health Coach in Bellville
         </h1>
         <p className="text-base sm:text-lg text-brand-teal font-semibold tracking-wide">
           Registered Nurse • Critical Care Registered Nurse • Holistic Wellness Practitioner
@@ -33,7 +72,7 @@ export default function About() {
             <div className="absolute inset-0 rounded-3xl border border-brand-teal/20 scale-105 pointer-events-none"></div>
             <img
               src="/hazel.png"
-              alt="Sr. Hazel Kivedo circular portrait"
+              alt="Sr. Hazel Kivedo - Critical Care Registered Nurse & Holistic Wellness Practitioner"
               className="w-72 h-72 sm:w-96 sm:h-96 object-cover rounded-3xl border-4 border-brand-teal/15 shadow-xl relative z-10"
             />
             <div className="absolute -bottom-4 -left-4 bg-brand-teal text-white px-6 py-2.5 rounded-2xl shadow-md z-20 text-xs font-semibold">

@@ -4,8 +4,8 @@ import useSeo from '../hooks/useSeo';
 
 export default function Products() {
   useSeo(
-    'Explore Wellness Products',
-    'Explore our collection of nurse-approved wellness guides, trackers, e-books, and OHS Act compliance toolkits by Sr. Hazel Kivedo.'
+    'Premium E-Commerce Wellness Resources & Guides',
+    'Shop our premium e-commerce wellness guides, Anti-Inflammatory 7-Day Meal Plan, and Lose It For Life Tracker booklets. Secure checkout via WhatsApp.'
   );
 
   // Load products list from localStorage (dynamic CRUD source)
@@ -161,7 +161,7 @@ Please let me know how to proceed with payment and access/delivery details.`;
           Wellness Store
         </span>
         <h1 className="text-4xl sm:text-5xl font-serif text-brand-charcoal font-bold leading-tight">
-          Explore Our Products
+          Explore Our Wellness & Compliance Products
         </h1>
         <p className="text-brand-charcoal/70 text-sm sm:text-base leading-relaxed">
           Discover professional guides, trackers, and compliance tools curated to enrich your physical habits and align B2B health metrics.

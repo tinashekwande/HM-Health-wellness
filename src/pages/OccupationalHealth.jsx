@@ -26,8 +26,8 @@ const faqs = [
 
 export default function OccupationalHealth() {
   useSeo(
-    'Occupational Health',
-    'Registered Nurse-led B2B Occupational Health Medicals in Bellville, Cape Town. OHS Act compliance, Baseline, Periodic, and Exit medical assessments.'
+    'Occupational Health Medicals & Fitness-To-Work Bellville',
+    'Get compliant workplace medicals, construction site baseline, periodic, and exit certificates, industrial lung, vision, & hearing tests in Cape Town.'
   );
 
   const [formData, setFormData] = useState({
@@ -135,8 +135,44 @@ ${formData.message}`;
     setOpenFaqIdx(prev => (prev === idx ? null : idx));
   };
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Occupational Health Medicals",
+    "provider": {
+      "@type": "MedicalOrganization",
+      "name": "HM Occhealth & Holistic Wellness",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bellville",
+        "addressRegion": "Western Cape",
+        "addressCountry": "ZA"
+      }
+    },
+    "areaServed": [
+      {
+        "@type": "AdministrativeArea",
+        "name": "Bellville"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Cape Town"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Western Cape"
+      }
+    ],
+    "description": "Registered nurse-led occupational medical surveillance under the South African OHS Act, including baseline, periodic, and exit medical certificates, spirometry, audiometry, and vision screening."
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-10 space-y-16">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       
       {/* 1. Header Banner */}
       <section className="text-center max-w-3xl mx-auto space-y-4">
@@ -144,7 +180,7 @@ ${formData.message}`;
           B2B Compliance & Health
         </span>
         <h1 className="text-4xl sm:text-5xl font-serif text-brand-charcoal font-bold leading-tight">
-          Occupational Health Medicals
+          Occupational Health Medicals & OHS Compliance in Cape Town
         </h1>
         <p className="text-brand-charcoal/70 text-sm sm:text-base leading-relaxed">
           Nurse-led medical assessments to keep your workforce safe, healthy, and fully compliant with the OHS Act and industry standards. Serving Bellville, Cape Town.

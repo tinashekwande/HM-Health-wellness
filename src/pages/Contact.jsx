@@ -3,8 +3,8 @@ import useSeo from '../hooks/useSeo';
 
 export default function Contact() {
   useSeo(
-    'Book a Consultation',
-    'Book a consultation with Sr. Hazel Kivedo for Occupational Health, weight loss coaching, nutrition guidance, or home organizing in Bellville, Cape Town.'
+    'Book Consultation & Compliant Medicals Bellville',
+    'Schedule a fitness-to-work assessment, OHS staff medical screening, or holistic wellness coaching. Direct booking by WhatsApp, email, or phone.'
   );
 
   const [formData, setFormData] = useState({
@@ -46,6 +46,27 @@ export default function Contact() {
     foodmedicine: 'Let Food Be Your Medicine (Nutrition)',
     organizing: 'Home Organizing',
     coaching: 'Wellness Coaching'
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "HM Occhealth & Holistic Wellness",
+    "image": `${window.location.origin}/hazel.png`,
+    "telephone": "+27615370217",
+    "email": "hmhealthclear@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bellville",
+      "addressRegion": "Western Cape",
+      "addressCountry": "ZA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-33.8943",
+      "longitude": "18.6294"
+    },
+    "url": window.location.origin
   };
 
   const handleSubmit = (e) => {
@@ -110,6 +131,11 @@ ${formData.message}`;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-10 space-y-16">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       
       {/* 1. Header Banner */}
       <section className="text-center max-w-3xl mx-auto space-y-4">
@@ -117,7 +143,7 @@ ${formData.message}`;
           Get in Touch
         </span>
         <h1 className="text-4xl sm:text-5xl font-serif text-brand-charcoal font-bold leading-tight">
-          Book a Consultation
+          Book Consultation & Compliant Medicals in Bellville
         </h1>
         <p className="text-brand-charcoal/70 text-sm sm:text-base leading-relaxed">
           Ready to schedule a personal coaching session, dietary evaluation, or coordinate workplace compliance medicals? Complete the form below, or reach out directly.
