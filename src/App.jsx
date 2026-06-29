@@ -9,6 +9,8 @@ import About from './pages/About';
 import Services from './pages/Services';
 import OccupationalHealth from './pages/OccupationalHealth';
 import Contact from './pages/Contact';
+import Products from './pages/Products';
+
 
 function AppContent() {
   const location = useLocation();
@@ -29,6 +31,9 @@ function AppContent() {
     bgOpacity = 'opacity-[0.45]';
   } else if (path === '/contact') {
     bgImage = '/bg-contact.png';
+    bgOpacity = 'opacity-[0.45]';
+  } else if (path === '/products') {
+    bgImage = '/bg-services.png';
     bgOpacity = 'opacity-[0.45]';
   }
 
@@ -64,6 +69,7 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/occupational-health" element={<OccupationalHealth />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

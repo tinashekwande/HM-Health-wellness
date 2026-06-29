@@ -98,6 +98,16 @@ export default function Header() {
               Services
             </Link>
             <Link
+              to="/products"
+              className={`transition-colors duration-200 py-1 border-b-2 ${
+                location.pathname === '/products'
+                  ? 'text-brand-teal border-brand-teal'
+                  : isLightHeader ? 'text-white/80 hover:text-white border-transparent' : 'text-brand-charcoal/80 hover:text-brand-teal border-transparent'
+              }`}
+            >
+              Products
+            </Link>
+            <Link
               to="/occupational-health"
               className={`transition-colors duration-200 py-1 border-b-2 ${
                 location.pathname === '/occupational-health'
@@ -161,7 +171,7 @@ export default function Header() {
       {/* Mobile Drawer Dropdown */}
       <div
         className={`md:hidden absolute w-full bg-white shadow-lg transition-all duration-300 overflow-hidden ${
-          mobileMenuOpen ? 'max-h-72 py-4 border-b border-brand-teal/10' : 'max-h-0'
+          mobileMenuOpen ? 'max-h-80 py-4 border-b border-brand-teal/10' : 'max-h-0'
         }`}
       >
         <div className="px-4 space-y-2 flex flex-col">
@@ -188,6 +198,14 @@ export default function Header() {
             }`}
           >
             Services
+          </Link>
+          <Link
+            to="/products"
+            className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
+              location.pathname === '/products' ? 'bg-brand-teal/10 text-brand-teal' : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
+            }`}
+          >
+            Products
           </Link>
           <Link
             to="/occupational-health"

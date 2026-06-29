@@ -53,10 +53,10 @@ export default function Home() {
                 Book a Consultation
               </Link>
               <Link
-                to="/about"
+                to="/products"
                 className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/30 text-white hover:bg-white/20 px-8 py-3.5 text-sm font-semibold backdrop-blur-sm transition-all hover:scale-105"
               >
-                About Sr. Hazel
+                Explore our Products
               </Link>
             </div>
 
