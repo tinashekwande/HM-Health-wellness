@@ -39,24 +39,24 @@ export default function Header() {
         <div className="flex items-center justify-between">
           
           {/* Logo and Business Name */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center gap-2 xs:gap-3 group">
             <img
               src="/no-background-logo.png"
               alt="HM Occhealth & Holistic Wellness Logo"
               className={`object-contain transition-all duration-300 ${
-                isLightHeader ? 'w-24 h-16 sm:w-36 sm:h-24' : 'w-18 h-12 sm:w-24 sm:h-16'
+                isLightHeader ? 'w-28 h-18 sm:w-36 sm:h-24' : 'w-22 h-14 sm:w-24 sm:h-16'
               }`}
             />
             <div className="leading-tight">
               <span
-                className={`block font-serif text-xs sm:text-lg md:text-xl font-bold tracking-tight transition-colors duration-300 ${
+                className={`block font-serif text-sm xs:text-base sm:text-lg md:text-xl font-bold tracking-tight transition-colors duration-300 ${
                   isLightHeader ? 'text-white' : 'text-brand-teal-deep'
                 }`}
               >
                 HM Occhealth & Holistic Wellness
               </span>
               <span
-                className={`block text-[8px] sm:text-xs tracking-widest font-semibold uppercase transition-colors duration-300 ${
+                className={`block text-[9px] xs:text-xs tracking-widest font-semibold uppercase transition-colors duration-300 ${
                   isLightHeader ? 'text-brand-pink/90' : 'text-brand-sage'
                 }`}
               >
@@ -171,12 +171,13 @@ export default function Header() {
       {/* Mobile Drawer Dropdown */}
       <div
         className={`md:hidden absolute w-full bg-white shadow-lg transition-all duration-300 overflow-hidden ${
-          mobileMenuOpen ? 'max-h-80 py-4 border-b border-brand-teal/10' : 'max-h-0'
+          mobileMenuOpen ? 'max-h-[380px] py-4 border-b border-brand-teal/10' : 'max-h-0'
         }`}
       >
         <div className="px-4 space-y-2 flex flex-col">
           <Link
             to="/"
+            onClick={() => setMobileMenuOpen(false)}
             className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
               isHome ? 'bg-brand-teal/10 text-brand-teal' : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
             }`}
@@ -185,6 +186,7 @@ export default function Header() {
           </Link>
           <Link
             to="/about"
+            onClick={() => setMobileMenuOpen(false)}
             className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
               location.pathname === '/about' ? 'bg-brand-teal/10 text-brand-teal' : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
             }`}
@@ -193,6 +195,7 @@ export default function Header() {
           </Link>
           <Link
             to="/services"
+            onClick={() => setMobileMenuOpen(false)}
             className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
               location.pathname === '/services' ? 'bg-brand-teal/10 text-brand-teal' : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
             }`}
@@ -201,6 +204,7 @@ export default function Header() {
           </Link>
           <Link
             to="/products"
+            onClick={() => setMobileMenuOpen(false)}
             className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
               location.pathname === '/products' ? 'bg-brand-teal/10 text-brand-teal' : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
             }`}
@@ -209,6 +213,7 @@ export default function Header() {
           </Link>
           <Link
             to="/occupational-health"
+            onClick={() => setMobileMenuOpen(false)}
             className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
               location.pathname === '/occupational-health' ? 'bg-brand-teal/10 text-brand-teal' : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
             }`}
@@ -217,6 +222,7 @@ export default function Header() {
           </Link>
           <Link
             to="/contact"
+            onClick={() => setMobileMenuOpen(false)}
             className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
               location.pathname === '/contact' ? 'bg-brand-teal/10 text-brand-teal' : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
             }`}
@@ -225,9 +231,17 @@ export default function Header() {
           </Link>
           <Link
             to="/contact"
-            className="mt-2 text-center text-sm font-semibold rounded-full bg-brand-teal text-white py-2 px-4 shadow hover:bg-brand-teal-deep transition-all duration-200"
+            onClick={() => setMobileMenuOpen(false)}
+            className="mt-2 text-center text-sm font-semibold rounded-full bg-brand-teal text-white py-3 px-4 shadow hover:bg-brand-teal-deep transition-all duration-200"
           >
             Book a Consultation
+          </Link>
+          <Link
+            to="/dashboard"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-center text-xs font-bold rounded-full bg-brand-charcoal/10 text-brand-charcoal py-2.5 px-4 border border-brand-charcoal/15 transition-all duration-200 hover:bg-brand-charcoal/20"
+          >
+            🔐 Management Portal
           </Link>
         </div>
       </div>

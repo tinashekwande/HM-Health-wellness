@@ -375,43 +375,43 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         
         {/* Sidebar Tabs menu */}
-        <div className="space-y-2 flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 border-b lg:border-b-0 border-brand-teal/10">
+        <div className="space-y-2 flex flex-row lg:flex-col items-center lg:items-stretch overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 border-b lg:border-b-0 border-brand-teal/10 w-full gap-2 lg:gap-0">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all shrink-0 ${
+            className={`w-auto lg:w-full text-center lg:text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all shrink-0 ${
               activeTab === 'overview'
                 ? 'bg-brand-teal text-white shadow shadow-brand-teal/15'
                 : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
             }`}
           >
-            📊 Workspace Overview
+            📊 Overview
           </button>
           <button
             onClick={() => setActiveTab('bookings')}
-            className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all shrink-0 ${
+            className={`w-auto lg:w-full text-center lg:text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all shrink-0 ${
               activeTab === 'bookings'
                 ? 'bg-brand-teal text-white shadow shadow-brand-teal/15'
                 : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
             }`}
           >
-            📅 Bookings Manager ({totalBookingsCount})
+            📅 Bookings ({totalBookingsCount})
           </button>
           <button
             onClick={() => setActiveTab('products')}
-            className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all shrink-0 ${
+            className={`w-auto lg:w-full text-center lg:text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all shrink-0 ${
               activeTab === 'products'
                 ? 'bg-brand-teal text-white shadow shadow-brand-teal/15'
                 : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
             }`}
           >
-            🛒 Products Catalog ({activeProductsCount})
+            🛒 Products ({activeProductsCount})
           </button>
           <hr className="hidden lg:block border-brand-teal/10 my-2" />
           <button
             onClick={handleLogout}
-            className="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-all shrink-0"
+            className="w-auto lg:w-full text-center lg:text-left px-4 py-3 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-all shrink-0"
           >
-            🚪 Log Out Workspace
+            🚪 Log Out
           </button>
         </div>
 
@@ -591,19 +591,21 @@ export default function Dashboard() {
                             <option value="Cancelled">Cancelled</option>
                           </select>
                         </td>
-                        <td className="py-4 px-2 text-right space-x-2">
-                          <button
-                            onClick={() => startBookingEdit(b)}
-                            className="text-brand-teal hover:underline font-bold"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => deleteBooking(b.id)}
-                            className="text-red-500 hover:underline font-bold"
-                          >
-                            Delete
-                          </button>
+                        <td className="py-4 px-2 text-right">
+                          <div className="flex justify-end gap-1.5">
+                            <button
+                              onClick={() => startBookingEdit(b)}
+                              className="inline-flex items-center justify-center px-2.5 py-1.5 rounded-lg bg-brand-teal/10 hover:bg-brand-teal/20 text-brand-teal font-bold transition-all text-[11px]"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => deleteBooking(b.id)}
+                              className="inline-flex items-center justify-center px-2.5 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 font-bold transition-all text-[11px]"
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -674,25 +676,27 @@ export default function Dashboard() {
                             <span className="text-brand-charcoal/30">-</span>
                           )}
                         </td>
-                        <td className="py-4 px-2 text-right space-x-3">
-                          <button
-                            onClick={() => setProductPreviewItem(p)}
-                            className="text-brand-sage hover:underline font-bold"
-                          >
-                            Preview
-                          </button>
-                          <button
-                            onClick={() => startProductEdit(p)}
-                            className="text-brand-teal hover:underline font-bold"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => deleteProduct(p.id)}
-                            className="text-red-500 hover:underline font-bold"
-                          >
-                            Delete
-                          </button>
+                        <td className="py-4 px-2 text-right">
+                          <div className="flex justify-end gap-1.5">
+                            <button
+                              onClick={() => setProductPreviewItem(p)}
+                              className="inline-flex items-center justify-center px-2.5 py-1.5 rounded-lg bg-brand-sage/15 hover:bg-brand-sage/35 text-brand-charcoal font-bold transition-all text-[11px]"
+                            >
+                              Preview
+                            </button>
+                            <button
+                              onClick={() => startProductEdit(p)}
+                              className="inline-flex items-center justify-center px-2.5 py-1.5 rounded-lg bg-brand-teal/10 hover:bg-brand-teal/20 text-brand-teal font-bold transition-all text-[11px]"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => deleteProduct(p.id)}
+                              className="inline-flex items-center justify-center px-2.5 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 font-bold transition-all text-[11px]"
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}

@@ -276,19 +276,19 @@ Please let me know how to proceed with payment and access/delivery details.`;
                 </div>
 
                 {/* Price & Actions */}
-                <div className="pt-4 border-t border-brand-teal/5 flex items-center justify-between mt-auto">
-                  <span className="text-xl font-bold text-brand-teal-deep">
+                <div className="pt-4 border-t border-brand-teal/5 flex flex-col xs:flex-row gap-3 items-start xs:items-center justify-between mt-auto">
+                  <span className="text-lg xs:text-xl font-bold text-brand-teal-deep">
                     R{product.price}
                   </span>
                   
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 w-full xs:w-auto">
                     <button
                       onClick={(e) => addToCart(product, e)}
-                      className="inline-flex items-center justify-center rounded-xl bg-brand-teal text-white hover:bg-brand-teal-deep px-4 py-2 text-xs font-bold transition-all shadow-sm"
+                      className="flex-1 xs:flex-none inline-flex items-center justify-center rounded-xl bg-brand-teal text-white hover:bg-brand-teal-deep px-4 py-2.5 text-xs font-bold transition-all shadow-sm active:scale-95"
                     >
                       Add +
                     </button>
-                    <button className="inline-flex items-center justify-center rounded-xl bg-brand-teal/10 text-brand-teal hover:bg-brand-teal/20 px-3.5 py-2 text-xs font-bold transition-all">
+                    <button className="flex-1 xs:flex-none inline-flex items-center justify-center rounded-xl bg-brand-teal/10 text-brand-teal hover:bg-brand-teal/20 px-3.5 py-2.5 text-xs font-bold transition-all active:scale-95">
                       View
                     </button>
                   </div>
