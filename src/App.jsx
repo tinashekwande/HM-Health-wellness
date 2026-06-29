@@ -20,16 +20,16 @@ function AppContent() {
 
   if (path === '/about') {
     bgImage = '/bg-about.png';
-    bgOpacity = 'opacity-[0.14]';
+    bgOpacity = 'opacity-[0.45]';
   } else if (path === '/services') {
     bgImage = '/bg-services.png';
-    bgOpacity = 'opacity-[0.14]';
+    bgOpacity = 'opacity-[0.45]';
   } else if (path === '/occupational-health') {
     bgImage = '/bg-occupational.png';
-    bgOpacity = 'opacity-[0.14]';
+    bgOpacity = 'opacity-[0.45]';
   } else if (path === '/contact') {
     bgImage = '/bg-contact.png';
-    bgOpacity = 'opacity-[0.14]';
+    bgOpacity = 'opacity-[0.45]';
   }
 
   return (
@@ -43,7 +43,7 @@ function AppContent() {
         ></div>
         {/* Soft white overlay to keep the image subtle and preserve high readability */}
         {path !== '/' && (
-          <div className="absolute inset-0 bg-white/75 backdrop-blur-[0.5px]"></div>
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-[0.5px]"></div>
         )}
         
         {/* Soft Teal glow at top-left */}
