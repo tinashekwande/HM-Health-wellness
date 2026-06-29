@@ -368,13 +368,13 @@ Please let me know how to proceed with payment and access/delivery details.`;
                   addToCart(selectedProduct);
                   setSelectedProduct(null);
                 }}
-                className="flex-grow inline-flex items-center justify-center rounded-full bg-brand-teal text-white hover:bg-brand-teal-deep py-3.5 px-6 font-semibold text-sm transition-all hover:scale-105 shadow-md shadow-brand-teal/15 text-center"
+                className="flex-grow inline-flex items-center justify-center rounded-2xl bg-brand-teal text-white hover:bg-brand-teal-deep py-3.5 px-6 font-semibold text-sm transition-all hover:scale-105 shadow-md shadow-brand-teal/15 text-center"
               >
                 🛒 Add to Shopping Cart
               </button>
               <button
                 onClick={() => handleSingleOrderWhatsApp(selectedProduct.name, selectedProduct.price)}
-                className="inline-flex items-center justify-center rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] py-3.5 px-6 font-semibold text-sm transition-all hover:scale-105 shadow-sm text-center"
+                className="inline-flex items-center justify-center rounded-2xl bg-[#25D366] text-white hover:bg-[#20ba5a] py-3.5 px-6 font-semibold text-sm transition-all hover:scale-105 shadow-sm text-center"
               >
                 💬 Buy Instantly via WhatsApp
               </button>
@@ -476,14 +476,14 @@ Please let me know how to proceed with payment and access/delivery details.`;
                   <button
                     disabled={cart.length === 0}
                     onClick={handleCheckoutWhatsApp}
-                    className="w-full inline-flex items-center justify-center rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] py-3.5 font-bold text-sm transition-all hover:scale-105 shadow-md shadow-brand-teal/10 disabled:opacity-50 disabled:pointer-events-none"
+                    className="w-full inline-flex items-center justify-center rounded-2xl bg-[#25D366] text-white hover:bg-[#20ba5a] py-3.5 font-bold text-sm transition-all hover:scale-105 shadow-md shadow-brand-teal/10 disabled:opacity-50 disabled:pointer-events-none"
                   >
                     💬 Checkout via WhatsApp
                   </button>
                   <button
                     disabled={cart.length === 0}
                     onClick={handleEmailCheckout}
-                    className="w-full inline-flex items-center justify-center rounded-full bg-white border border-brand-teal/20 text-brand-teal hover:bg-brand-teal/5 py-3 font-semibold text-xs transition-all disabled:opacity-50 disabled:pointer-events-none"
+                    className="w-full inline-flex items-center justify-center rounded-2xl bg-white border border-brand-teal/20 text-brand-teal hover:bg-brand-teal/5 py-3 font-semibold text-xs transition-all disabled:opacity-50 disabled:pointer-events-none"
                   >
                     ✉️ Checkout via Email
                   </button>
@@ -508,13 +508,13 @@ Please let me know how to proceed with payment and access/delivery details.`;
             href="https://wa.me/27615370217"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] font-semibold px-8 py-3.5 transition-all shadow-md hover:scale-105 text-sm"
+            className="inline-flex items-center justify-center rounded-2xl bg-[#25D366] text-white hover:bg-[#20ba5a] font-semibold px-8 py-3.5 transition-all shadow-md hover:scale-105 text-sm"
           >
             Chat on WhatsApp
           </a>
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-brand-teal text-white hover:bg-brand-teal-deep font-semibold px-8 py-3.5 transition-all shadow-md hover:scale-105 text-sm"
+            className="inline-flex items-center justify-center rounded-2xl bg-brand-teal text-white hover:bg-brand-teal-deep font-semibold px-8 py-3.5 transition-all shadow-md hover:scale-105 text-sm"
           >
             Book a Consultation
           </Link>

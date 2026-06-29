@@ -320,7 +320,7 @@ export default function Dashboard() {
             
             <button
               type="submit"
-              className="w-full bg-brand-teal hover:bg-brand-teal-deep text-white py-3 rounded-full font-semibold text-sm transition-all shadow-md"
+              className="w-full bg-brand-teal hover:bg-brand-teal-deep text-white py-3 rounded-2xl font-semibold text-sm transition-all shadow-md"
             >
               Authenticate Portal
             </button>
@@ -1060,7 +1060,7 @@ export default function Dashboard() {
 
             <button
               onClick={() => setProductPreviewItem(null)}
-              className="w-full rounded-full bg-brand-charcoal text-white hover:bg-brand-charcoal/90 py-2.5 text-xs font-bold transition-all shadow-sm"
+              className="w-full rounded-2xl bg-brand-charcoal text-white hover:bg-brand-charcoal/90 py-2.5 text-xs font-bold transition-all shadow-sm"
             >
               Close Mockup Window
             </button>

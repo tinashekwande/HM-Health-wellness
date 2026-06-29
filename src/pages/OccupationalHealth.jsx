@@ -359,14 +359,14 @@ ${formData.message}`;
                   <div className="grid gap-4 sm:grid-cols-2 mt-2">
                     <button
                       type="submit"
-                      className="w-full rounded-full bg-brand-charcoal text-white hover:bg-brand-charcoal/90 py-3.5 text-sm font-semibold transition-all shadow-md"
+                      className="w-full rounded-2xl bg-brand-charcoal text-white hover:bg-brand-charcoal/90 py-3.5 text-sm font-semibold transition-all shadow-md"
                     >
                       Submit Request
                     </button>
                     <button
                       type="button"
                       onClick={handleWhatsAppSubmit}
-                      className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#20ba5a] py-3.5 text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2"
+                      className="w-full rounded-2xl bg-[#25D366] text-white hover:bg-[#20ba5a] py-3.5 text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2"
                     >
                       Request via WhatsApp
                     </button>

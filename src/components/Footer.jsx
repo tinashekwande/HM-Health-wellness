@@ -92,11 +92,11 @@ export default function Footer() {
                   placeholder="Your Email Address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="rounded-full bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white placeholder-brand-warm-white/50 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:border-transparent flex-grow"
+                  className="rounded-xl bg-white/10 border border-white/15 px-4 py-2.5 text-sm text-white placeholder-brand-warm-white/50 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:border-transparent flex-grow"
                 />
                 <button
                   type="submit"
-                  className="rounded-full bg-brand-teal text-white hover:bg-brand-teal-deep px-5 py-2.5 text-sm font-semibold transition-all shadow-md shrink-0"
+                  className="rounded-xl bg-brand-teal text-white hover:bg-brand-teal-deep px-5 py-2.5 text-sm font-semibold transition-all shadow-md shrink-0"
                 >
                   Subscribe
                 </button>

@@ -140,7 +140,7 @@ export default function About() {
         <div>
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-brand-teal text-white hover:bg-brand-teal-deep font-semibold px-8 py-3.5 transition-all shadow-md hover:scale-105"
+            className="inline-flex items-center justify-center rounded-2xl bg-brand-teal text-white hover:bg-brand-teal-deep font-semibold px-8 py-3.5 transition-all shadow-md hover:scale-105"
           >
             Book a Consultation
           </Link>

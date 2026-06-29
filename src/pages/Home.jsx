@@ -48,13 +48,13 @@ export default function Home() {
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-brand-teal text-white hover:bg-brand-teal-deep px-8 py-3.5 text-sm font-semibold shadow-lg shadow-black/20 transition-all hover:scale-105 w-full sm:w-auto"
+                className="inline-flex items-center justify-center rounded-2xl bg-brand-teal text-white hover:bg-brand-teal-deep px-8 py-3.5 text-sm font-semibold shadow-lg shadow-black/20 transition-all hover:scale-105 w-full sm:w-auto"
               >
                 Book a Consultation
               </Link>
               <Link
                 to="/products"
-                className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/30 text-white hover:bg-white/20 px-8 py-3.5 text-sm font-semibold backdrop-blur-sm transition-all hover:scale-105 w-full sm:w-auto"
+                className="inline-flex items-center justify-center rounded-2xl bg-white/10 border border-white/30 text-white hover:bg-white/20 px-8 py-3.5 text-sm font-semibold backdrop-blur-sm transition-all hover:scale-105 w-full sm:w-auto"
               >
                 Explore our Products
               </Link>
@@ -326,7 +326,7 @@ export default function Home() {
             <div className="pt-2">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-white text-brand-teal-deep hover:bg-brand-pink hover:text-brand-charcoal font-semibold px-8 py-3.5 transition-all shadow-md"
+                className="inline-flex items-center justify-center rounded-2xl bg-white text-brand-teal-deep hover:bg-brand-pink hover:text-brand-charcoal font-semibold px-8 py-3.5 transition-all shadow-md"
               >
                 Book a Consultation
               </Link>

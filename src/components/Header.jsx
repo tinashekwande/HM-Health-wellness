@@ -133,7 +133,7 @@ export default function Header() {
           <div className="hidden sm:flex items-center gap-4">
             <Link
               to="/contact"
-              className={`inline-flex items-center justify-center text-sm font-semibold rounded-full px-5 py-2.5 transition-all duration-300 shadow-sm ${
+              className={`inline-flex items-center justify-center text-sm font-semibold rounded-2xl px-5 py-2.5 transition-all duration-300 shadow-sm ${
                 isLightHeader
                   ? 'bg-white text-brand-teal-deep hover:bg-brand-pink hover:text-brand-charcoal hover:shadow-md'
                   : 'bg-brand-teal text-white hover:bg-brand-teal-deep hover:shadow-md'
@@ -232,14 +232,14 @@ export default function Header() {
           <Link
             to="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="mt-2 text-center text-sm font-semibold rounded-full bg-brand-teal text-white py-3 px-4 shadow hover:bg-brand-teal-deep transition-all duration-200"
+            className="mt-2 text-center text-sm font-semibold rounded-2xl bg-brand-teal text-white py-3 px-4 shadow hover:bg-brand-teal-deep transition-all duration-200"
           >
             Book a Consultation
           </Link>
           <Link
             to="/dashboard"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-center text-xs font-bold rounded-full bg-brand-charcoal/10 text-brand-charcoal py-2.5 px-4 border border-brand-charcoal/15 transition-all duration-200 hover:bg-brand-charcoal/20"
+            className="text-center text-xs font-bold rounded-2xl bg-brand-charcoal/10 text-brand-charcoal py-2.5 px-4 border border-brand-charcoal/15 transition-all duration-200 hover:bg-brand-charcoal/20"
           >
             🔐 Management Portal
           </Link>
