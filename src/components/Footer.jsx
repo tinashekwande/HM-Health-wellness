@@ -63,10 +63,16 @@ export default function Footer() {
                 <Link to="/services" className="hover:text-brand-pink transition-colors">Our Services</Link>
               </li>
               <li>
+                <Link to="/wellness" className="hover:text-brand-pink transition-colors">Wellness Programme</Link>
+              </li>
+              <li>
                 <Link to="/occupational-health" className="hover:text-brand-pink transition-colors">Occupational Health (B2B)</Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-brand-pink transition-colors">Book a Consultation</Link>
+                <Link to="/products" className="hover:text-brand-pink transition-colors">Induka Products</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-brand-pink transition-colors">Request a Quote</Link>
               </li>
             </ul>
           </div>

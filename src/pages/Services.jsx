@@ -39,7 +39,7 @@ const servicesData = [
       { name: 'Lifestyle Coaching Sessions', desc: 'Direct, compassionate support to help you navigate setbacks and stay motivated.' },
       { name: 'Habit Tracking Systems', desc: 'Simple, practical tools to build consistency in daily routines.' }
     ],
-    ctaText: 'Book a Weight Loss Consultation',
+    ctaText: 'Enquire About Weight Loss Coaching',
     ctaLink: '/contact'
   },
   {
@@ -57,7 +57,7 @@ const servicesData = [
       { name: 'Disease Prevention', desc: 'Using diet to manage and prevent lifestyle-related conditions (hypertension, diabetes).' },
       { name: 'Gut Health Support', desc: 'Rebuilding gut flora to optimize nutrient absorption and support immunity.' }
     ],
-    ctaText: 'Book a Nutrition Consultation',
+    ctaText: 'Enquire About Nutrition Guidance',
     ctaLink: '/contact'
   },
   {
@@ -75,7 +75,7 @@ const servicesData = [
       { name: 'Productivity Support', desc: 'Designing workspaces that enhance focus and minimize distractions.' },
       { name: 'Space Optimization', desc: 'Maximizing the utility of small or multi-functional storage areas.' }
     ],
-    ctaText: 'Book an Organizing Consultation',
+    ctaText: 'Enquire About Home Organizing',
     ctaLink: '/contact'
   },
   {
@@ -93,7 +93,7 @@ const servicesData = [
       { name: 'Holistic Health Planning', desc: 'Structuring a daily routine that balances work, family, rest, and health.' },
       { name: 'Stress Management', desc: 'Integrating mindfulness and grounding rituals into high-pressure lives.' }
     ],
-    ctaText: 'Book a Coaching Consultation',
+    ctaText: 'Enquire About Wellness Coaching',
     ctaLink: '/contact'
   }
 ];
@@ -113,7 +113,7 @@ const faqData = [
   },
   {
     question: "Do I need a doctor's referral to see Sr Hazel?",
-    answer: "No, a doctor's referral is not required. You can book a direct consultation with Sr. Hazel for personal wellness coaching, nutrition guidance, home organizing, or B2B occupational health assessments."
+    answer: "No, a doctor's referral is not required. You can request a consultation with Sr. Hazel for personal wellness coaching, nutrition guidance, home organizing, or B2B occupational health assessments."
   }
 ];
 

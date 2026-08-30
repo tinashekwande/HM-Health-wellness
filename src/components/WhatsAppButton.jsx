@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function WhatsAppButton() {
   const phoneNumber = '27615370217'; // Sr Hazel phone format
-  const message = encodeURIComponent('Hello Sr. Hazel, I would like to book a consultation / request more information about HM Occhealth & Holistic Wellness.');
+  const message = encodeURIComponent('Hello, I would like to enquire about your services at HM Occhealth & Holistic Wellness. Could you please provide more information?');
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   return (

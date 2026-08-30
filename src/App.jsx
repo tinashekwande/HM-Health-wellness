@@ -7,6 +7,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
+import Wellness from './pages/Wellness';
 import OccupationalHealth from './pages/OccupationalHealth';
 import Contact from './pages/Contact';
 import Products from './pages/Products';
@@ -24,6 +25,9 @@ function AppContent() {
     bgImage = '/bg-about.png';
     bgOpacity = 'opacity-[0.45]';
   } else if (path === '/services') {
+    bgImage = '/bg-services.png';
+    bgOpacity = 'opacity-[0.45]';
+  } else if (path === '/wellness') {
     bgImage = '/bg-services.png';
     bgOpacity = 'opacity-[0.45]';
   } else if (path === '/occupational-health') {
@@ -178,9 +182,12 @@ function AppContent() {
           id: 'B-1719662000000',
           date: '2026-06-29 09:30',
           name: 'John Doe',
+          company: '',
           phone: '082 123 4567',
           email: 'johndoe@gmail.com',
-          service: 'Lose It For Life (Weight Coaching)',
+          service: 'Wellness Coaching',
+          numberOfPeople: '1',
+          preferredDate: '2026-06-29',
           message: 'Interested in a 12-week weight loss program.',
           status: 'Confirmed',
           type: 'Consultation'
@@ -189,15 +196,22 @@ function AppContent() {
           id: 'B-1719663000000',
           date: '2026-06-29 10:15',
           name: 'Apex Construction',
+          company: 'Apex Construction',
           phone: '021 555 8899',
           email: 'safety@apexcon.co.za',
-          service: 'OHS Assessment: Apex Construction (Construction, 45 staff)',
+          service: 'Basic Medicals, Periodic Medicals',
+          numberOfPeople: '15',
+          preferredDate: '2026-09-15',
           message: 'Need baseline medicals for 15 workers in Bellville.',
           status: 'Pending',
           type: 'B2B Assessment'
         }
       ];
       localStorage.setItem('hm_bookings', JSON.stringify(defaultBookings));
+    }
+
+    if (!localStorage.getItem('hm_blocked_dates')) {
+      localStorage.setItem('hm_blocked_dates', JSON.stringify([]));
     }
   }, []);
 
@@ -233,6 +247,7 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/wellness" element={<Wellness />} />
             <Route path="/products" element={<Products />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/occupational-health" element={<OccupationalHealth />} />

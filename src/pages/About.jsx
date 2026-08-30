@@ -174,14 +174,14 @@ export default function About() {
           Begin Your Wellness Journey Today
         </h3>
         <p className="text-brand-warm-white/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-          Book a direct, personal consultation with Sr. Hazel Kivedo to discuss your health goals, dietary needs, or workplace wellness compliance.
+          Connect directly with Sr. Hazel Kivedo to discuss your health goals, dietary needs, or workplace wellness compliance.
         </p>
         <div>
           <Link
             to="/contact"
             className="inline-flex items-center justify-center rounded-2xl bg-brand-teal text-white hover:bg-brand-teal-deep font-semibold px-8 py-3.5 transition-all shadow-md hover:scale-105"
           >
-            Book a Consultation
+            Request a Consultation
           </Link>
         </div>
       </section>

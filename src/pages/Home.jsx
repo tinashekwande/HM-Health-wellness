@@ -110,7 +110,7 @@ export default function Home() {
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight font-serif text-white">
-              Transforming Lives Through Pratical, Hostilic Wellness
+              Transforming Lives Through Practical, Holistic Wellness
             </h1>
             
             <p className="text-base sm:text-lg text-brand-warm-white/90 leading-relaxed max-w-2xl">
@@ -122,7 +122,7 @@ export default function Home() {
                 to="/contact"
                 className="inline-flex items-center justify-center rounded-2xl bg-brand-teal text-white hover:bg-brand-teal-deep px-8 py-3.5 text-sm font-semibold shadow-lg shadow-black/20 transition-all hover:scale-105 w-full sm:w-auto"
               >
-                Book a Consultation
+                Request a Quote
               </Link>
               <Link
                 to="/products"
@@ -379,6 +379,15 @@ export default function Home() {
           </div>
 
           <WellnessTree />
+
+          <div className="text-center pt-4">
+            <Link
+              to="/wellness"
+              className="inline-flex items-center justify-center rounded-2xl bg-brand-teal text-white hover:bg-brand-teal-deep px-8 py-3.5 text-sm font-semibold shadow-md transition-all hover:scale-105"
+            >
+              Explore Our Year-Long Wellness Programme →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -393,14 +402,14 @@ export default function Home() {
               Ready to Partner in Your Health and Wellness?
             </h2>
             <p className="text-brand-warm-white/90 text-sm sm:text-base leading-relaxed">
-              Book a personal lifestyle consultation or workplace health assessment with Sr. Hazel. Let's work together to create healthy, purpose-driven lives and safe, compliant workspaces.
+              Request a personal lifestyle consultation or workplace health assessment with Sr. Hazel. Let's work together to create healthy, purpose-driven lives and safe, compliant workspaces.
             </p>
             <div className="pt-2">
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center rounded-2xl bg-white text-brand-teal-deep hover:bg-brand-pink hover:text-brand-charcoal font-semibold px-8 py-3.5 transition-all shadow-md"
               >
-                Book a Consultation
+                Request a Quote
               </Link>
             </div>
           </div>

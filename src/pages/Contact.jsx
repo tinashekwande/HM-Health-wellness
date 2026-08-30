@@ -3,15 +3,18 @@ import useSeo from '../hooks/useSeo';
 
 export default function Contact() {
   useSeo(
-    'Book Consultation & Compliant Medicals Bellville',
-    'Schedule a fitness-to-work assessment, OHS staff medical screening, or holistic wellness coaching. Direct booking by WhatsApp, email, or phone.'
+    'Contact & Enquiries | HM Occhealth & Holistic Wellness',
+    'Submit an enquiry for occupational health medicals, wellness coaching, or general requests. Direct contact via WhatsApp, email, or phone.'
   );
 
   const [formData, setFormData] = useState({
     name: '',
+    company: '',
     phone: '',
     email: '',
-    service: 'coaching',
+    service: 'General Enquiry',
+    numberOfPeople: '',
+    preferredDate: '',
     message: ''
   });
 
@@ -40,13 +43,19 @@ export default function Contact() {
     }
   };
 
-  const serviceLabels = {
-    occhealth: 'Occupational Health Medicals',
-    loseit: 'Lose It For Life (Weight Coaching)',
-    foodmedicine: 'Let Food Be Your Medicine (Nutrition)',
-    organizing: 'Home Organizing',
-    coaching: 'Wellness Coaching'
-  };
+  const serviceOptions = [
+    'General Enquiry',
+    'Occupational Health — Basic Medicals',
+    'Occupational Health — Periodic Medicals',
+    'Occupational Health — Exit Medicals',
+    'Occupational Health — Drug Testing',
+    'Occupational Health — Spirometry (Lung Function)',
+    'Occupational Health — Audiometry (Hearing)',
+    'Occupational Health — Vision Testing',
+    'Wellness Programme',
+    'Nutrition & Lifestyle Coaching',
+    'Product Enquiry'
+  ];
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
@@ -72,49 +81,59 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const serviceName = serviceLabels[formData.service] || formData.service;
     saveBookingToLocalStorage({
       name: formData.name,
+      company: formData.company,
       phone: formData.phone,
       email: formData.email,
-      service: serviceName,
+      service: formData.service,
+      numberOfPeople: formData.numberOfPeople,
+      preferredDate: formData.preferredDate,
       message: formData.message
     });
 
     setSubmitted(true);
     setFormData({
       name: '',
+      company: '',
       phone: '',
       email: '',
-      service: 'coaching',
+      service: 'General Enquiry',
+      numberOfPeople: '',
+      preferredDate: '',
       message: ''
     });
   };
 
   const handleWhatsAppSubmit = (e) => {
-    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
-      alert('Please fill out all fields before booking via WhatsApp.');
+    if (!formData.name || !formData.phone || !formData.email || !formData.service) {
+      alert('Please fill out all required fields (Name, Phone, Email, Service) before requesting via WhatsApp.');
       return;
     }
 
-    const serviceName = serviceLabels[formData.service] || formData.service;
     saveBookingToLocalStorage({
       name: formData.name,
+      company: formData.company,
       phone: formData.phone,
       email: formData.email,
-      service: serviceName,
+      service: formData.service,
+      numberOfPeople: formData.numberOfPeople,
+      preferredDate: formData.preferredDate,
       message: formData.message
     });
 
-    const msg = `Hello Sr. Hazel, I would like to book a consultation for: "${serviceName}".
+    const msg = `Hello, I would like to submit an enquiry for: "${formData.service}".
 
 My Details:
 - Name: ${formData.name}
+- Company: ${formData.company || 'N/A'}
 - Phone: ${formData.phone}
 - Email: ${formData.email}
+- Number of People: ${formData.numberOfPeople || 'N/A'}
+- Preferred Date: ${formData.preferredDate || 'Flexible'}
 
-Inquiry Details:
-${formData.message}`;
+Additional Information:
+${formData.message || 'None'}`;
 
     const whatsappUrl = `https://wa.me/27615370217?text=${encodeURIComponent(msg)}`;
     window.open(whatsappUrl, '_blank');
@@ -122,12 +141,17 @@ ${formData.message}`;
     setSubmitted(true);
     setFormData({
       name: '',
+      company: '',
       phone: '',
       email: '',
-      service: 'coaching',
+      service: 'General Enquiry',
+      numberOfPeople: '',
+      preferredDate: '',
       message: ''
     });
   };
+
+  const today = new Date().toISOString().split('T')[0];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-10 space-y-16">
@@ -140,10 +164,10 @@ ${formData.message}`;
       {/* 1. Header Banner */}
       <section className="text-center max-w-3xl mx-auto space-y-4">
         <span className="text-xs uppercase font-bold tracking-widest text-brand-teal">
-          Get in Touch
+          Contact Us
         </span>
         <h1 className="text-4xl sm:text-5xl font-serif text-brand-charcoal font-bold leading-tight">
-          Book Consultation & Compliant Medicals in Bellville
+          Get in Touch
         </h1>
         <p className="text-brand-charcoal/70 text-sm sm:text-base leading-relaxed">
           Ready to schedule a personal coaching session, dietary evaluation, or coordinate workplace compliance medicals? Complete the form below, or reach out directly.
@@ -228,24 +252,24 @@ ${formData.message}`;
         <div className="lg:col-span-7">
           <div className="bg-white/90 border border-white/40 rounded-3xl p-6 sm:p-8 md:p-10 shadow-md backdrop-blur-md">
             <h3 className="text-xl sm:text-2xl font-serif font-semibold text-brand-charcoal mb-4">
-              Schedule Your Consultation
+              Submit an Enquiry
             </h3>
             <p className="text-xs text-brand-charcoal/70 leading-relaxed mb-6">
-              Complete this form to request a consultation. Sr. Hazel will contact you directly via phone or email to confirm a slot and outline initial details.
+              Complete this form to submit an enquiry or booking request. Please note that submitting this form does not confirm an appointment. We will review your request and contact you to discuss availability and next steps.
             </p>
 
             {submitted ? (
               <div className="rounded-2xl border border-brand-sage-light/20 bg-brand-sage-light/5 p-6 text-center space-y-3">
                 <span className="text-4xl block">✓</span>
-                <h4 className="font-semibold text-lg text-brand-teal-deep font-serif">Consultation Booked</h4>
+                <h4 className="font-semibold text-lg text-brand-teal-deep font-serif">Enquiry Received</h4>
                 <p className="text-sm text-brand-charcoal/80 leading-relaxed">
-                  Your inquiry has been successfully sent. Sr. Hazel Kivedo will contact you directly to schedule your consultation.
+                  Thank you for your enquiry. Please note that this is a request and does not constitute a confirmed appointment. We will review your requirements and contact you to confirm the suitable date and time.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
                   className="mt-4 inline-flex justify-center text-xs font-semibold underline text-brand-teal hover:text-brand-teal-deep"
                 >
-                  Submit Another Inquiry
+                  Submit Another Enquiry
                 </button>
               </div>
             ) : (
@@ -254,7 +278,7 @@ ${formData.message}`;
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="block text-xs font-semibold text-brand-charcoal mb-1 uppercase tracking-wider">
-                      Your Name
+                      Your Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -268,8 +292,25 @@ ${formData.message}`;
                     />
                   </div>
                   <div>
+                    <label htmlFor="company" className="block text-xs font-semibold text-brand-charcoal mb-1 uppercase tracking-wider">
+                      Company (Optional)
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      className="w-full rounded-xl bg-brand-warm-white border border-brand-teal/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                      placeholder="Company Name"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
                     <label htmlFor="phone" className="block text-xs font-semibold text-brand-charcoal mb-1 uppercase tracking-wider">
-                      Phone Number
+                      Phone Number <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="tel"
@@ -282,52 +323,81 @@ ${formData.message}`;
                       placeholder="Phone"
                     />
                   </div>
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-xs font-semibold text-brand-charcoal mb-1 uppercase tracking-wider">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full rounded-xl bg-brand-warm-white border border-brand-teal/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal"
-                    placeholder="email@example.com"
-                  />
+                  <div>
+                    <label htmlFor="email" className="block text-xs font-semibold text-brand-charcoal mb-1 uppercase tracking-wider">
+                      Email Address <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full rounded-xl bg-brand-warm-white border border-brand-teal/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                      placeholder="email@example.com"
+                    />
+                  </div>
                 </div>
 
                 <div>
                   <label htmlFor="service" className="block text-xs font-semibold text-brand-charcoal mb-1 uppercase tracking-wider">
-                    Service of Interest
+                    Service of Interest <span className="text-red-500">*</span>
                   </label>
                   <select
                     id="service"
                     name="service"
+                    required
                     value={formData.service}
                     onChange={handleInputChange}
                     className="w-full rounded-xl bg-brand-warm-white border border-brand-teal/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal"
                   >
-                    <option value="occhealth">🏥 Occupational Health Medicals</option>
-                    <option value="loseit">⚖️ Lose It For Life (Weight Coaching)</option>
-                    <option value="foodmedicine">🥗 Let Food Be Your Medicine (Nutrition)</option>
-                    <option value="organizing">🏠 Home Organizing</option>
-                    <option value="coaching">🌱 Wellness Coaching</option>
+                    {serviceOptions.map((option, idx) => (
+                      <option key={idx} value={option}>{option}</option>
+                    ))}
                   </select>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="numberOfPeople" className="block text-xs font-semibold text-brand-charcoal mb-1 uppercase tracking-wider">
+                      Number of People (Optional)
+                    </label>
+                    <input
+                      type="number"
+                      id="numberOfPeople"
+                      name="numberOfPeople"
+                      min="1"
+                      value={formData.numberOfPeople}
+                      onChange={handleInputChange}
+                      className="w-full rounded-xl bg-brand-warm-white border border-brand-teal/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                      placeholder="e.g. 5"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="preferredDate" className="block text-xs font-semibold text-brand-charcoal mb-1 uppercase tracking-wider">
+                      Preferred Date (Optional)
+                    </label>
+                    <input
+                      type="date"
+                      id="preferredDate"
+                      name="preferredDate"
+                      min={today}
+                      value={formData.preferredDate}
+                      onChange={handleInputChange}
+                      className="w-full rounded-xl bg-brand-warm-white border border-brand-teal/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                    />
+                  </div>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-xs font-semibold text-brand-charcoal mb-1 uppercase tracking-wider">
-                    Inquiry Details
+                    Additional Information (Optional)
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows="4"
-                    required
                     value={formData.message}
                     onChange={handleInputChange}
                     className="w-full rounded-xl bg-brand-warm-white border border-brand-teal/10 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal"
@@ -340,14 +410,14 @@ ${formData.message}`;
                     type="submit"
                     className="w-full rounded-2xl bg-brand-teal text-white hover:bg-brand-teal-deep py-3.5 text-sm font-semibold transition-all shadow-md"
                   >
-                    Submit Booking Request
+                    Submit Enquiry
                   </button>
                   <button
                     type="button"
                     onClick={handleWhatsAppSubmit}
                     className="w-full rounded-2xl bg-[#25D366] text-white hover:bg-[#20ba5a] py-3.5 text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2"
                   >
-                    Book via WhatsApp
+                    Request via WhatsApp
                   </button>
                 </div>
 

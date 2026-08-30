@@ -24,6 +24,16 @@ const faqs = [
   }
 ];
 
+const availableServices = [
+  'Basic Medicals',
+  'Periodic Medicals',
+  'Exit Medicals',
+  'Drug Testing',
+  'Spirometry (Lung Function)',
+  'Audiometry (Hearing)',
+  'Vision Testing (Drivers)'
+];
+
 export default function OccupationalHealth() {
   useSeo(
     'Occupational Health Medicals & Fitness-To-Work Bellville',
@@ -37,15 +47,29 @@ export default function OccupationalHealth() {
     email: '',
     employees: '',
     industry: '',
+    preferredDate: '',
     message: ''
   });
 
+  const [selectedServices, setSelectedServices] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [openFaqIdx, setOpenFaqIdx] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleServiceToggle = (service) => {
+    setSelectedServices(prev => 
+      prev.includes(service)
+        ? prev.filter(s => s !== service)
+        : [...prev, service]
+    );
+  };
+
+  const scrollToForm = () => {
+    document.getElementById('request-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const saveBookingToLocalStorage = (bookingData) => {
@@ -57,6 +81,7 @@ export default function OccupationalHealth() {
         date: new Date().toLocaleDateString('en-ZA') + ' ' + new Date().toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit' }),
         status: 'Pending',
         type: 'B2B Assessment',
+        preferredDate: formData.preferredDate || 'Not specified',
         ...bookingData
       };
       bookings.unshift(newBooking);
@@ -68,12 +93,16 @@ export default function OccupationalHealth() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (selectedServices.length === 0) {
+      alert('Please select at least one service required.');
+      return;
+    }
     
     saveBookingToLocalStorage({
       name: formData.contactPerson,
       phone: formData.phone,
       email: formData.email,
-      service: `OHS Assessment: ${formData.companyName} (${formData.industry}, ${formData.employees} staff)`,
+      service: `OHS Assessment: ${formData.companyName} (${formData.industry}, ${formData.employees} staff) - Services: ${selectedServices.join(', ')}`,
       message: formData.message
     });
 
@@ -85,13 +114,19 @@ export default function OccupationalHealth() {
       email: '',
       employees: '',
       industry: '',
+      preferredDate: '',
       message: ''
     });
+    setSelectedServices([]);
   };
 
   const handleWhatsAppSubmit = (e) => {
-    if (!formData.companyName || !formData.contactPerson || !formData.phone || !formData.email || !formData.employees || !formData.industry || !formData.message) {
-      alert('Please fill out all fields before submitting via WhatsApp.');
+    if (!formData.companyName || !formData.contactPerson || !formData.phone || !formData.email || !formData.employees || !formData.industry) {
+      alert('Please fill out all required fields before submitting via WhatsApp.');
+      return;
+    }
+    if (selectedServices.length === 0) {
+      alert('Please select at least one service required.');
       return;
     }
 
@@ -99,11 +134,11 @@ export default function OccupationalHealth() {
       name: formData.contactPerson,
       phone: formData.phone,
       email: formData.email,
-      service: `OHS Assessment: ${formData.companyName} (${formData.industry}, ${formData.employees} staff)`,
+      service: `OHS Assessment: ${formData.companyName} (${formData.industry}, ${formData.employees} staff) - Services: ${selectedServices.join(', ')}`,
       message: formData.message
     });
 
-    const msg = `Hello Sr. Hazel, I would like to request a B2B Occupational Health Assessment.
+    const msg = `Hello Sr. Hazel, I would like to request a quotation for occupational health services.
 
 Company Details:
 - Company Name: ${formData.companyName}
@@ -113,8 +148,13 @@ Company Details:
 - Employees: ${formData.employees}
 - Industry: ${formData.industry}
 
-Assessment Request Message:
-${formData.message}`;
+Requested Services:
+${selectedServices.map(s => `- ${s}`).join('\n')}
+
+Preferred Date: ${formData.preferredDate || 'Not specified'}
+
+Message:
+${formData.message || 'No additional message.'}`;
 
     const whatsappUrl = `https://wa.me/27615370217?text=${encodeURIComponent(msg)}`;
     window.open(whatsappUrl, '_blank');
@@ -127,8 +167,10 @@ ${formData.message}`;
       email: '',
       employees: '',
       industry: '',
+      preferredDate: '',
       message: ''
     });
+    setSelectedServices([]);
   };
 
   const toggleFaq = (idx) => {
@@ -166,6 +208,8 @@ ${formData.message}`;
     "description": "Registered nurse-led occupational medical surveillance under the South African OHS Act, including baseline, periodic, and exit medical certificates, spirometry, audiometry, and vision screening."
   };
 
+  const today = new Date().toISOString().split('T')[0];
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-10 space-y-16">
       {/* Schema.org Structured Data */}
@@ -177,7 +221,7 @@ ${formData.message}`;
       {/* 1. Header Banner */}
       <section className="text-center max-w-3xl mx-auto space-y-4">
         <span className="text-xs uppercase font-bold tracking-widest text-brand-teal">
-          B2B Compliance & Health
+          Occupational Health Services
         </span>
         <h1 className="text-4xl sm:text-5xl font-serif text-brand-charcoal font-bold leading-tight">
           Occupational Health Medicals & OHS Compliance in Cape Town
@@ -222,34 +266,104 @@ ${formData.message}`;
             <h3 className="text-xl font-serif font-semibold text-brand-charcoal">
               Types of Medical Assessments Provided
             </h3>
-            <div className="grid gap-4 sm:grid-cols-3">
-              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md space-y-2">
-                <div className="text-xl">📥</div>
-                <h4 className="font-serif font-bold text-sm text-brand-charcoal">Baseline Medicals</h4>
-                <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
-                  Conducted before employee begins work to assess physical suitability and log baseline health status.
-                </p>
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2">
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md flex flex-col justify-between space-y-2">
+                <div>
+                  <div className="text-xl">📥</div>
+                  <h4 className="font-serif font-bold text-sm text-brand-charcoal">Baseline Medicals</h4>
+                  <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
+                    Conducted before employee begins work to assess physical suitability and log baseline health status.
+                  </p>
+                </div>
+                <button onClick={scrollToForm} className="mt-4 text-xs font-semibold text-brand-teal hover:text-brand-teal-deep text-left">
+                  Request a Quote →
+                </button>
               </div>
-              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md space-y-2">
-                <div className="text-xl">🔄</div>
-                <h4 className="font-serif font-bold text-sm text-brand-charcoal">Periodic Medicals</h4>
-                <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
-                  Routine health checks performed at intervals to track occupational exposure (e.g. lung, hearing, vision).
-                </p>
+              
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md flex flex-col justify-between space-y-2">
+                <div>
+                  <div className="text-xl">🔄</div>
+                  <h4 className="font-serif font-bold text-sm text-brand-charcoal">Periodic Medicals</h4>
+                  <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
+                    Routine health checks performed at intervals to track occupational exposure (e.g. lung, hearing, vision).
+                  </p>
+                </div>
+                <button onClick={scrollToForm} className="mt-4 text-xs font-semibold text-brand-teal hover:text-brand-teal-deep text-left">
+                  Request a Quote →
+                </button>
               </div>
-              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md space-y-2">
-                <div className="text-xl">📤</div>
-                <h4 className="font-serif font-bold text-sm text-brand-charcoal">Exit Medicals</h4>
-                <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
-                  Conducted at end of employment to record final health status, verifying no impairment was sustained.
-                </p>
+              
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md flex flex-col justify-between space-y-2">
+                <div>
+                  <div className="text-xl">📤</div>
+                  <h4 className="font-serif font-bold text-sm text-brand-charcoal">Exit Medicals</h4>
+                  <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
+                    Conducted at end of employment to record final health status, verifying no impairment was sustained.
+                  </p>
+                </div>
+                <button onClick={scrollToForm} className="mt-4 text-xs font-semibold text-brand-teal hover:text-brand-teal-deep text-left">
+                  Request a Quote →
+                </button>
               </div>
+
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md flex flex-col justify-between space-y-2">
+                <div>
+                  <div className="text-xl">🧪</div>
+                  <h4 className="font-serif font-bold text-sm text-brand-charcoal">Drug Testing</h4>
+                  <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
+                    Screening for illicit substances to maintain a safe and compliant working environment.
+                  </p>
+                </div>
+                <button onClick={scrollToForm} className="mt-4 text-xs font-semibold text-brand-teal hover:text-brand-teal-deep text-left">
+                  Request a Quote →
+                </button>
+              </div>
+
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md flex flex-col justify-between space-y-2">
+                <div>
+                  <div className="text-xl">🫁</div>
+                  <h4 className="font-serif font-bold text-sm text-brand-charcoal">Spirometry (Lung Function)</h4>
+                  <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
+                    Testing to measure lung capacity and identify potential respiratory issues due to occupational exposure.
+                  </p>
+                </div>
+                <button onClick={scrollToForm} className="mt-4 text-xs font-semibold text-brand-teal hover:text-brand-teal-deep text-left">
+                  Request a Quote →
+                </button>
+              </div>
+
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md flex flex-col justify-between space-y-2">
+                <div>
+                  <div className="text-xl">👂</div>
+                  <h4 className="font-serif font-bold text-sm text-brand-charcoal">Audiometry (Hearing)</h4>
+                  <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
+                    Hearing assessments to monitor and protect employees exposed to high noise levels.
+                  </p>
+                </div>
+                <button onClick={scrollToForm} className="mt-4 text-xs font-semibold text-brand-teal hover:text-brand-teal-deep text-left">
+                  Request a Quote →
+                </button>
+              </div>
+
+              <div className="border border-white/40 bg-white/90 backdrop-blur-md rounded-2xl p-5 shadow-md flex flex-col justify-between space-y-2">
+                <div>
+                  <div className="text-xl">👁️</div>
+                  <h4 className="font-serif font-bold text-sm text-brand-charcoal">Vision Testing</h4>
+                  <p className="text-[11px] text-brand-charcoal/70 leading-relaxed">
+                    Eye screening to ensure employees, particularly drivers and operators, meet visual fitness standards.
+                  </p>
+                </div>
+                <button onClick={scrollToForm} className="mt-4 text-xs font-semibold text-brand-teal hover:text-brand-teal-deep text-left">
+                  Request a Quote →
+                </button>
+              </div>
+
             </div>
           </div>
         </div>
 
         {/* Right Side: Lead Capture Form */}
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5" id="request-form">
           <div className="bg-gradient-to-br from-brand-teal-deep to-brand-teal text-white rounded-3xl p-6 sm:p-8 shadow-lg shadow-brand-teal/15 relative overflow-hidden">
             <div className="absolute top-[-5rem] right-[-5rem] w-48 h-48 rounded-full bg-white/5 blur-2xl pointer-events-none"></div>
             
@@ -268,7 +382,7 @@ ${formData.message}`;
                   <span className="text-4xl block">✓</span>
                   <h4 className="font-semibold text-lg">Request Received</h4>
                   <p className="text-xs text-brand-warm-white/90 leading-relaxed">
-                    Thank you! Your assessment request has been received. Sr. Hazel will contact you within 24 business hours.
+                    Thank you for your enquiry. Please note that this is a request and does not constitute a confirmed appointment. We will review your requirements and contact you to confirm availability and next steps.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -374,6 +488,40 @@ ${formData.message}`;
                         className="w-full rounded-xl bg-white border border-brand-teal/10 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink"
                         placeholder="e.g. Manufacturing"
                       />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="preferredDate" className="block text-xs font-semibold text-white mb-1 uppercase tracking-wider">
+                      Preferred Date (Optional)
+                    </label>
+                    <input
+                      type="date"
+                      id="preferredDate"
+                      name="preferredDate"
+                      min={today}
+                      value={formData.preferredDate}
+                      onChange={handleInputChange}
+                      className="w-full rounded-xl bg-white border border-brand-teal/10 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-pink"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-white mb-2 uppercase tracking-wider">
+                      Services Required (Select at least one)
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {availableServices.map((service) => (
+                        <label key={service} className="flex items-center space-x-2 text-sm text-white cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={selectedServices.includes(service)}
+                            onChange={() => handleServiceToggle(service)}
+                            className="rounded border-white/20 text-brand-teal-deep focus:ring-brand-pink bg-white/10"
+                          />
+                          <span>{service}</span>
+                        </label>
+                      ))}
                     </div>
                   </div>
 

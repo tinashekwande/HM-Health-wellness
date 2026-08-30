@@ -101,6 +101,16 @@ export default function Header() {
               Services
             </Link>
             <Link
+              to="/wellness"
+              className={`transition-colors duration-200 py-1 border-b-2 ${
+                location.pathname === '/wellness'
+                  ? 'text-white border-white'
+                  : 'text-white/80 hover:text-white border-transparent hover:border-white/50'
+              }`}
+            >
+              Wellness
+            </Link>
+            <Link
               to="/products"
               className={`transition-colors duration-200 py-1 border-b-2 ${
                 location.pathname === '/products'
@@ -138,7 +148,7 @@ export default function Header() {
               to="/contact"
               className="inline-flex items-center justify-center text-sm font-semibold rounded-2xl px-5 py-2.5 transition-all duration-300 shadow-sm bg-white text-brand-teal-deep hover:bg-brand-pink hover:text-brand-charcoal hover:shadow-md"
             >
-              Book a Consultation
+              Request a Quote
             </Link>
           </div>
 
@@ -166,7 +176,7 @@ export default function Header() {
       {/* Mobile Drawer Dropdown */}
       <div
         className={`md:hidden absolute w-full bg-brand-warm-white shadow-lg transition-all duration-300 overflow-hidden ${
-          mobileMenuOpen ? 'max-h-[380px] py-4 border-b border-brand-teal/10' : 'max-h-0'
+          mobileMenuOpen ? 'max-h-[420px] py-4 border-b border-brand-teal/10' : 'max-h-0'
         }`}
       >
         <div className="px-4 space-y-2 flex flex-col">
@@ -196,6 +206,15 @@ export default function Header() {
             }`}
           >
             Services
+          </Link>
+          <Link
+            to="/wellness"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
+              location.pathname === '/wellness' ? 'bg-brand-teal/10 text-brand-teal' : 'text-brand-charcoal/80 hover:bg-brand-teal/5'
+            }`}
+          >
+            Wellness
           </Link>
           <Link
             to="/products"
@@ -229,7 +248,7 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(false)}
             className="mt-2 text-center text-sm font-semibold rounded-2xl bg-brand-teal text-white py-3 px-4 shadow hover:bg-brand-teal-deep transition-all duration-200"
           >
-            Book a Consultation
+            Request a Quote
           </Link>
           <Link
             to="/dashboard"
