@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import useSeo from '../hooks/useSeo';
 
 export default function Contact() {
-  useSeo(
-    'Contact & Enquiries | HM Occhealth & Holistic Wellness',
-    'Submit an enquiry for occupational health medicals, wellness coaching, or general requests. Direct contact via WhatsApp, email, or phone.'
-  );
+  useSeo({
+    title: 'Contact & Bookings | Occupational Health & Wellness Bellville Cape Town',
+    description: 'Submit an enquiry for occupational health medicals, Annexure 3 certificates, or holistic wellness coaching in Bellville & Greater Cape Town. Call or WhatsApp 061 537 0217.',
+    keywords: 'contact occupational health bellville, book medicals cape town, OHS quotation request, nurse hazel kivedo phone whatsapp, occupational health clinic bellville',
+    canonical: '/contact',
+    image: '/hazel.png'
+  });
 
   const [formData, setFormData] = useState({
     name: '',
@@ -59,15 +62,16 @@ export default function Contact() {
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "MedicalClinic"],
     "name": "HM Occhealth & Holistic Wellness",
-    "image": `${window.location.origin}/hazel.png`,
+    "image": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/hazel.png`,
     "telephone": "+27615370217",
     "email": "hmhealthclear@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bellville",
       "addressRegion": "Western Cape",
+      "postalCode": "7530",
       "addressCountry": "ZA"
     },
     "geo": {
@@ -75,7 +79,35 @@ export default function Contact() {
       "latitude": "-33.8943",
       "longitude": "18.6294"
     },
-    "url": window.location.origin
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    ],
+    "areaServed": ["Bellville", "Cape Town", "Durbanville", "Western Cape"],
+    "url": typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact Us",
+        "item": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/contact`
+      }
+    ]
   };
 
   const handleSubmit = (e) => {
@@ -159,6 +191,10 @@ ${formData.message || 'None'}`;
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       
       {/* 1. Header Banner */}

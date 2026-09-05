@@ -35,10 +35,13 @@ const availableServices = [
 ];
 
 export default function OccupationalHealth() {
-  useSeo(
-    'Occupational Health Medicals & Fitness-To-Work Bellville',
-    'Get compliant workplace medicals, construction site baseline, periodic, and exit certificates, industrial lung, vision, & hearing tests in Cape Town.'
-  );
+  useSeo({
+    title: 'Occupational Health Medicals & Fitness-To-Work Cape Town | HM OccHealth',
+    description: 'Compliant workplace medicals, construction site baseline, periodic, and exit certificates of fitness, spirometry, and audiometry in Bellville & Greater Cape Town. Call 061 537 0217.',
+    keywords: 'occupational health medicals cape town, fitness to work certificate, baseline medicals bellville, periodic medical assessment, exit medical certificate western cape, annexure 3 medicals, spirometry test cape town, audiometry hearing screening, drug testing workplace south africa',
+    canonical: '/occupational-health',
+    image: '/hazel.png'
+  });
 
   const [formData, setFormData] = useState({
     companyName: '',
@@ -208,6 +211,38 @@ ${formData.message || 'No additional message.'}`;
     "description": "Registered nurse-led occupational medical surveillance under the South African OHS Act, including baseline, periodic, and exit medical certificates, spirometry, audiometry, and vision screening."
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Occupational Health",
+        "item": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/occupational-health`
+      }
+    ]
+  };
+
   const today = new Date().toISOString().split('T')[0];
 
   return (
@@ -216,6 +251,14 @@ ${formData.message || 'No additional message.'}`;
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       
       {/* 1. Header Banner */}

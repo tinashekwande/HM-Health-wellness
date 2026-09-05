@@ -1,0 +1,12 @@
+# robots.txt for HM Occhealth & Holistic Wellness
+# https://hmhealthwellness.co.za
+
+User-agent: *
+Allow: /
+
+# Disallow admin & staff portal paths
+Disallow: /dashboard
+Disallow: /#/dashboard
+
+# Sitemap location
+Sitemap: https://hmhealthwellness.co.za/sitemap.xml

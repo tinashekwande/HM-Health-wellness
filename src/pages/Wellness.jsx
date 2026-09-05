@@ -4,20 +4,57 @@ import useSeo from '../hooks/useSeo';
 import WellnessTree from '../components/WellnessTree';
 
 export default function Wellness() {
-  useSeo(
-    'Holistic Wellness Programme',
-    'Explore our Year-Long Holistic Wellness Programme featuring health assessments, empowerment sessions, financial wellness, and the 8 dimensions of wellness.'
-  );
+  useSeo({
+    title: 'Year-Long Holistic Wellness Programme Cape Town | HM OccHealth',
+    description: 'Transformative year-long holistic wellness programme featuring nurse-led health assessments, blood-pressure monitoring, empowerment, and the 8 dimensions of wellness in Bellville & Cape Town.',
+    keywords: 'holistic wellness programme cape town, corporate wellness program western cape, 8 dimensions of wellness bellville, nurse led health screening, workplace wellness workshops cape town',
+    canonical: '/wellness',
+    image: '/hazel.png'
+  });
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Year-Long Holistic Wellness Programme",
+    "serviceType": "Holistic Wellness & Preventative Healthcare",
     "provider": {
       "@type": "MedicalOrganization",
-      "name": "HM Occhealth & Holistic Wellness"
+      "name": "HM Occhealth & Holistic Wellness",
+      "telephone": "+27615370217",
+      "email": "hmhealthclear@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bellville",
+        "addressRegion": "Western Cape",
+        "postalCode": "7530",
+        "addressCountry": "ZA"
+      }
     },
-    "description": "A comprehensive year-long wellness programme designed to promote physical, mental, and financial well-being."
+    "areaServed": [
+      { "@type": "City", "name": "Bellville" },
+      { "@type": "City", "name": "Cape Town" },
+      { "@type": "AdministrativeArea", "name": "Western Cape" }
+    ],
+    "description": "A comprehensive year-long wellness programme designed to promote physical, mental, and financial well-being through nurse-led clinical monitoring and holistic habit transformation."
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Wellness Programme",
+        "item": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/wellness`
+      }
+    ]
   };
 
   const components = [
@@ -59,6 +96,10 @@ export default function Wellness() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero Section */}

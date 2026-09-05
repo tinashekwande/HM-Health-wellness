@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import useSeo from '../hooks/useSeo';
 
 export default function Dashboard() {
-  useSeo(
-    'Management Portal',
-    'Manage bookings, products catalog, and calendar for HM Occhealth & Holistic Wellness.'
-  );
+  useSeo({
+    title: 'Staff Management Portal',
+    description: 'Internal management portal for HM Occhealth & Holistic Wellness staff.',
+    noindex: true
+  });
 
   const [activeTab, setActiveTab] = useState('overview');
 

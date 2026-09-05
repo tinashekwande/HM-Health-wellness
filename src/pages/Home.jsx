@@ -4,26 +4,30 @@ import useSeo from '../hooks/useSeo';
 import WellnessTree from '../components/WellnessTree';
 
 export default function Home() {
-  useSeo(
-    'Occupational Health Medicals & Holistic Wellness Bellville',
-    'Get OHS Act compliant occupational health medicals, construction site certificates, and holistic weight loss programs in Bellville & Cape Town from Sr Hazel Kivedo.'
-  );
+  useSeo({
+    title: 'Occupational Health Medicals & Holistic Wellness Bellville, Cape Town',
+    description: 'Registered Nurse-led occupational health compliance medicals, construction fitness certificates, and holistic wellness coaching in Bellville & Greater Cape Town. Call 061 537 0217.',
+    keywords: 'occupational health medicals cape town, occupational health practitioner bellville, fitness to work certificate, baseline medicals construction, annexure 3 medical certificate western cape, holistic wellness coach bellville, weight loss coaching cape town, sr hazel kivedo',
+    canonical: '/',
+    image: '/hazel.png'
+  });
 
   const clinicSchema = {
     "@context": "https://schema.org",
-    "@type": "MedicalClinic",
+    "@type": ["MedicalClinic", "LocalBusiness"],
     "name": "HM Occhealth & Holistic Wellness",
-    "alternateName": "HM Health Clear",
+    "alternateName": ["HM Health Clear", "HM Occupational Health Bellville"],
     "description": "Led by Registered Nurse Sr Hazel Kivedo, providing professional Occupational Health Medicals, OHS Act compliance, and holistic wellness programs in Bellville, Cape Town.",
-    "url": window.location.origin,
-    "logo": `${window.location.origin}/no-background-logo.png`,
-    "image": `${window.location.origin}/hazel.png`,
+    "url": typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za',
+    "logo": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/no-background-logo.png`,
+    "image": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/hazel.png`,
     "telephone": "+27615370217",
     "email": "hmhealthclear@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bellville",
       "addressRegion": "Western Cape",
+      "postalCode": "7530",
       "addressCountry": "ZA"
     },
     "geo": {
@@ -31,6 +35,17 @@ export default function Home() {
       "latitude": "-33.8943",
       "longitude": "18.6294"
     },
+    "medicalSpecialty": [
+      "OccupationalMedicine",
+      "Nursing",
+      "PublicHealth"
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Bellville" },
+      { "@type": "City", "name": "Cape Town" },
+      { "@type": "City", "name": "Durbanville" },
+      { "@type": "AdministrativeArea", "name": "Western Cape" }
+    ],
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -45,6 +60,18 @@ export default function Home() {
         "closes": "17:00"
       }
     ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Occupational Health & Wellness Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Occupational Health Medicals & OHS Compliance" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Construction Baseline, Periodic & Exit Medicals" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Spirometry & Audiometry Screening" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Year-Long Holistic Wellness Programme" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lose It For Life Weight Coaching" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Let Food Be Your Medicine Nutrition Guidance" } }
+      ]
+    },
     "priceRange": "$$"
   };
 
@@ -106,15 +133,15 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-white">
           <div className="max-w-3xl space-y-6">
             <div className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium tracking-wide text-brand-warm-white backdrop-blur-sm">
-              ✨ A new way of Living.
+              ✨ Registered Nurse-Led Health &amp; Wellness in Bellville
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight font-serif text-white">
-              Transforming Lives Through Practical, Holistic Wellness
+              Occupational Health Medicals &amp; Holistic Wellness in Cape Town
             </h1>
             
             <p className="text-base sm:text-lg text-brand-warm-white/90 leading-relaxed max-w-2xl">
-              Certified occupational health assessments and registered nurse-led wellness coaching. We help local businesses maintain OHS Act compliance and support individuals with sustainable behavior transformation programs.
+              Transforming lives through practical, holistic wellness. Certified occupational health assessments, baseline medicals, and registered nurse-led coaching to keep your workforce compliant with the OHS Act and support sustainable personal vitality.
             </p>
             
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
@@ -203,7 +230,9 @@ export default function Home() {
               
               <img
                 src="/hazel.png"
-                alt="Sr. Hazel Kivedo - Registered Nurse & Holistic Health Coach in Bellville"
+                alt="Sr. Hazel Kivedo - Registered Nurse & Certified Occupational Health Practitioner in Bellville, Cape Town"
+                loading="lazy"
+                decoding="async"
                 className="w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-full border-4 border-brand-teal/15 shadow-xl relative z-0"
               />
             </div>

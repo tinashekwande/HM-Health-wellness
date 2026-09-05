@@ -25,7 +25,9 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <img
                 src="/3D logo.png"
-                alt="HM Occhealth & Holistic Wellness Logo"
+                alt="HM Occhealth & Holistic Wellness - Registered Nurse Sr. Hazel Kivedo in Bellville, Cape Town"
+                loading="lazy"
+                decoding="async"
                 className="w-24 h-24 sm:w-36 sm:h-36 object-contain"
               />
               <div>

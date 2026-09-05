@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import useSeo from '../hooks/useSeo';
 
 export default function Products() {
-  useSeo(
-    'Premium Induka Wellness Products & Guides',
-    'Browse our premium Induka wellness guides, Anti-Inflammatory 7-Day Meal Plan, and Lose It For Life Tracker booklets. Enquire via WhatsApp or email.'
-  );
+  useSeo({
+    title: 'Induka Wellness Products & Digital Health Guides | HM OccHealth',
+    description: 'Explore premium Induka wellness guides, Anti-Inflammatory meal plans, and Lose It For Life habit trackers. Nurse-led resources designed for sustainable health.',
+    keywords: 'induka wellness products, anti inflammatory meal plan guide, lose it for life habit tracker, clean eating guide pdf, organized home workbook, wellness resources south africa, sr hazel kivedo',
+    canonical: '/products',
+    image: '/hazel.png'
+  });
 
   // Load products list from localStorage (dynamic CRUD source)
   const [products, setProducts] = useState([]);
@@ -76,8 +79,65 @@ Thank you!`);
     processedProducts.sort((a, b) => a.name.localeCompare(b.name));
   }
 
+  const catalogSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Induka Wellness Products",
+    "description": "Professional health guides, lifestyle trackers, and compliance resources created by Registered Nurse Sr. Hazel Kivedo.",
+    "numberOfItems": products.length,
+    "itemListElement": products.map((prod, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": prod.name,
+        "description": prod.shortDesc || prod.longDesc,
+        "image": prod.image || 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80',
+        "category": prod.category,
+        "offers": {
+          "@type": "Offer",
+          "price": prod.price,
+          "priceCurrency": "ZAR",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "HM Occhealth & Holistic Wellness"
+          }
+        }
+      }
+    }))
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Induka Products",
+        "item": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/products`
+      }
+    ]
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-16 space-y-10 relative">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       
       {/* 1. Header Intro Section */}
       <section className="text-center max-w-3xl mx-auto space-y-4">

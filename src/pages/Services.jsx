@@ -122,10 +122,13 @@ export default function Services() {
   const [openFaqIdx, setOpenFaqIdx] = useState(null);
   const location = useLocation();
 
-  useSeo(
-    'OHS Medicals & Wellness Coaching Services Bellville',
-    'Explore our B2B construction site medicals, industrial screenings, and holistic wellness programs like Lose It For Life and Let Food Be Your Medicine.'
-  );
+  useSeo({
+    title: 'OHS Medicals & Holistic Wellness Coaching Services Cape Town | HM OccHealth',
+    description: 'B2B construction medicals, fitness-to-work testing, spirometry, and holistic wellness programs including Lose It For Life & nutrition guidance in Bellville & Cape Town.',
+    keywords: 'occupational health medicals services cape town, OHS compliance medicals bellville, fitness for work assessments, weight loss coaching cape town, nutrition guidance bellville, home organizing wellness, nurse hazel kivedo',
+    canonical: '/services',
+    image: '/hazel.png'
+  });
 
   const toggleFaq = (idx) => {
     setOpenFaqIdx(prev => (prev === idx ? null : idx));
@@ -138,8 +141,8 @@ export default function Services() {
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Occupational Health Medicals",
-        "description": "OHS Act compliant baseline, periodic, and exit medical assessments including lung function, vision, and hearing tests."
+        "name": "Occupational Health Medicals & OHS Compliance",
+        "description": "OHS Act compliant baseline, periodic, and exit medical assessments including lung function (spirometry), vision, and hearing (audiometry) tests."
       },
       {
         "@type": "ListItem",
@@ -158,6 +161,12 @@ export default function Services() {
         "position": 4,
         "name": "Home Organizing for Wellness",
         "description": "Professional decluttering and spatial organizing to cultivate peace of mind and minimize daily domestic stress."
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Holistic Wellness Coaching",
+        "description": "One-on-one goal setting, accountability, and life balance planning guided by a Registered Nurse."
       }
     ]
   };
@@ -173,6 +182,25 @@ export default function Services() {
         "text": item.answer
       }
     }))
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/services`
+      }
+    ]
   };
 
   // Support deep linking to tabs if specified in state or query
@@ -194,6 +222,10 @@ export default function Services() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       
       {/* 1. Header Banner */}

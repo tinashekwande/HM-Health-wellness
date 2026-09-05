@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import useSeo from '../hooks/useSeo';
 
 export default function About() {
-  useSeo(
-    'Registered Nurse & Wellness Coach Sr Hazel Kivedo | About',
-    'Meet Sr Hazel Kivedo, a Registered Nurse & Certified Occupational Health Practitioner providing faith-rooted wellness coaching & OHS compliance in Cape Town.'
-  );
+  useSeo({
+    title: 'Sr Hazel Kivedo | Registered Nurse & Occupational Health Practitioner Bellville',
+    description: 'Meet Sr Hazel Kivedo, a Critical Care Registered Nurse and Certified Occupational Health Practitioner offering compliant workplace medicals and holistic wellness coaching in Bellville, Cape Town.',
+    keywords: 'sr hazel kivedo, registered nurse bellville, occupational health practitioner cape town, critical care nurse western cape, holistic wellness practitioner, SANC nurse',
+    canonical: '/about',
+    image: '/hazel.png'
+  });
 
   const personSchema = {
     "@context": "https://schema.org",
@@ -16,10 +19,12 @@ export default function About() {
     "description": "Critical Care Registered Nurse and Certified Occupational Health Practitioner in Bellville, Cape Town, offering OHS Act compliant medicals, sustainable weight loss, and home organizing coaching.",
     "telephone": "+27615370217",
     "email": "hmhealthclear@gmail.com",
+    "image": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/hazel.png`,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bellville",
       "addressRegion": "Western Cape",
+      "postalCode": "7530",
       "addressCountry": "ZA"
     },
     "worksFor": {
@@ -32,12 +37,32 @@ export default function About() {
       "Holistic Wellness Coaching",
       "Sustainable Weight Loss",
       "Whole-food Nutrition",
-      "Home Organizing for Mental Wellness"
+      "Home Organizing for Mental Wellness",
+      "Spirometry & Audiometry"
     ],
     "alumniOf": [
       {
         "@type": "EducationalOrganization",
         "name": "South African Nursing Council (SANC)"
+      }
+    ]
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About Sr. Hazel Kivedo",
+        "item": `${typeof window !== 'undefined' ? window.location.origin : 'https://hmhealthwellness.co.za'}/about`
       }
     ]
   };
@@ -48,6 +73,10 @@ export default function About() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       
       {/* 1. Header Banner */}
@@ -72,7 +101,9 @@ export default function About() {
             <div className="absolute inset-0 rounded-3xl border border-brand-teal/20 scale-105 pointer-events-none"></div>
             <img
               src="/hazel.png"
-              alt="Sr. Hazel Kivedo - Critical Care Registered Nurse & Holistic Wellness Practitioner"
+              alt="Sr. Hazel Kivedo - Critical Care Registered Nurse & Occupational Health Practitioner in Bellville"
+              loading="lazy"
+              decoding="async"
               className="w-72 h-72 sm:w-96 sm:h-96 object-cover rounded-3xl border-4 border-brand-teal/15 shadow-xl relative z-10"
             />
             <div className="absolute -bottom-4 -left-4 bg-brand-teal text-white px-6 py-2.5 rounded-2xl shadow-md z-20 text-xs font-semibold">
