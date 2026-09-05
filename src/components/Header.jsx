@@ -38,11 +38,9 @@ export default function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-brand-teal-deep/95 backdrop-blur-md shadow-md border-b border-brand-teal/20 py-2.5'
-          : isHome
-          ? 'bg-gradient-to-b from-brand-teal-deep/85 via-brand-teal-deep/60 to-brand-teal-deep/20 backdrop-blur-sm border-b border-white/10 py-3 sm:py-3.5'
-          : 'bg-brand-teal-deep/90 backdrop-blur-md shadow-sm border-b border-white/10 py-3 sm:py-3.5'
+        isHome && !scrolled
+          ? 'bg-transparent py-5'
+          : 'bg-gradient-to-b from-brand-teal-deep/90 to-transparent py-5'
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
